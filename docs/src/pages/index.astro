@@ -5,6 +5,7 @@ import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-sourc
 import AdvancedDemo from '../components/AdvancedDemo.astro';
 import LanguagePlayground from '../components/LanguagePlayground.astro';
 import AssetsGallery from '../components/AssetsGallery.astro';
+import ExamplesShowcase from '../components/ExamplesShowcase.astro';
 import CopyBox from '../components/CopyBox.astro';
 import { getAssetPath, languages } from '../data/languages';
 
@@ -38,6 +39,8 @@ Docs: https://magnifito.github.io/astro-google-preferred-source/`;
       <a href="#why">Why</a>
       <a href="#install">Install</a>
       <a href="#playground">Playground</a>
+      <a href="#examples">Examples</a>
+      <a href="#assets">Badges</a>
       <a href="#reference">Reference</a>
       <a class="nav-cta" href="https://github.com/magnifito/astro-google-preferred-source">GitHub</a>
     </nav>
@@ -264,17 +267,13 @@ import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/
 
       <div class="docs-grid">
         <div class="docs-copy">
-          <h2>Deeplink</h2>
+          <h2>Deeplinks & Badges</h2>
           <p>
-            Use for no-JavaScript contexts, newsletters, social posts, or badge images hosted by
-            your site.
+            Zero-JavaScript deeplinks with built-in official Google badges, retina 2x resolution,
+            and automatic localization.
           </p>
-          <p>
-            Google provides
-            <a href="https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip">
-              official translated button assets
-            </a>
-            you can download and host yourself.
+          <p class="note">
+            Supports custom themes (<code>light</code>/<code>dark</code>), locale codes (<code>en</code>, <code>ko</code>, <code>ja</code>, etc.), standalone badge components, and custom slot styling.
           </p>
         </div>
         <div class="code-stack">
@@ -282,19 +281,35 @@ import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/
 import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
 ---
 
-<GooglePreferredSourceDeeplink url="magnifito.github.io">
-  Add as preferred source
-</GooglePreferredSourceDeeplink>`}</code></pre>
+<GooglePreferredSourceDeeplink
+  url="magnifito.github.io"
+  lang="ko"
+  theme="light"
+/>`}</code></pre>
           <div class="demo">
-            <GooglePreferredSourceDeeplink url="magnifito.github.io">
-              Add as preferred source
-            </GooglePreferredSourceDeeplink>
+            <GooglePreferredSourceDeeplink url="magnifito.github.io" lang="ko" theme="light" />
           </div>
-          <pre><code>{`<GooglePreferredSourceDeeplink url="magnifito.github.io">
-  <img src="/path/to/button.png" alt="Add as preferred source" />
-</GooglePreferredSourceDeeplink>`}</code></pre>
+          <pre><code>{`<!-- Or with standalone badge component -->
+import GooglePreferredSourceBadge from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceBadge.astro';
+
+<button class="custom-btn">
+  <GooglePreferredSourceBadge lang="en" theme="dark" />
+</button>`}</code></pre>
         </div>
       </div>
+    </section>
+
+    <section id="examples">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Interactive showcase</p>
+          <h2>From standard badges to exotic integrations.</h2>
+        </div>
+        <p class="lead">
+          Explore production-ready examples ranging from clean minimal badges and frosted-glass toasts to 3D holographic cards and cyberpunk terminal HUDs.
+        </p>
+      </div>
+      <ExamplesShowcase />
     </section>
 
     <section id="assets">

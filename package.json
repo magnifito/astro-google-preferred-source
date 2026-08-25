@@ -19,11 +19,13 @@
       "default": "./dist/client-esm.js"
     },
     "./components/GooglePreferredSourceButton.astro": "./src/components/GooglePreferredSourceButton.astro",
-    "./components/GooglePreferredSourceDeeplink.astro": "./src/components/GooglePreferredSourceDeeplink.astro"
+    "./components/GooglePreferredSourceDeeplink.astro": "./src/components/GooglePreferredSourceDeeplink.astro",
+    "./components/GooglePreferredSourceBadge.astro": "./src/components/GooglePreferredSourceBadge.astro"
   },
   "files": [
     "dist",
-    "src/components"
+    "src/components",
+    "src/assets"
   ],
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",

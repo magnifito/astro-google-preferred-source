@@ -1,0 +1,734 @@
+---
+import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
+import GooglePreferredSourceBadge from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceBadge.astro';
+
+const exampleSite = 'magnifito.github.io';
+---
+
+<div class="showcase-container">
+  <div class="showcase-nav" role="tablist" aria-label="Examples Categories">
+    <button class="tab-btn active" data-tab="basic" role="tab" aria-selected="true">
+      <span class="tab-icon">✨</span> Standard & Basic
+    </button>
+    <button class="tab-btn" data-tab="customized" role="tab" aria-selected="false">
+      <span class="tab-icon">🎨</span> Styled & Glassmorphic
+    </button>
+    <button class="tab-btn" data-tab="exotic" role="tab" aria-selected="false">
+      <span class="tab-icon">⚡</span> Exotic & Experimental
+    </button>
+  </div>
+
+  <!-- TAB 1: BASIC & STANDARD -->
+  <div class="tab-pane active" id="tab-basic">
+    <div class="examples-grid">
+      <!-- 1. Default Badge -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Default Localized Badge</h4>
+          <span class="badge-tag">Standard</span>
+        </div>
+        <p class="example-desc">Zero configuration. Automatically outputs retina srcset and official localized alt text.</p>
+        <div class="example-preview center-preview">
+          <GooglePreferredSourceDeeplink url={exampleSite} lang="en" theme="light" />
+        </div>
+        <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
+  url="your-site.com"
+  lang="en"
+  theme="light"
+/>`}</code></pre>
+      </div>
+
+      <!-- 2. Dark Theme & Multilingual -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Dark Theme (Korean)</h4>
+          <span class="badge-tag">Multilingual</span>
+        </div>
+        <p class="example-desc">Official dark palette with native Korean text and 2x resolution support.</p>
+        <div class="example-preview center-preview dark-bg">
+          <GooglePreferredSourceDeeplink url={exampleSite} lang="ko" theme="dark" />
+        </div>
+        <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
+  url="your-site.com"
+  lang="ko"
+  theme="dark"
+/>`}</code></pre>
+      </div>
+
+      <!-- 3. Standalone Badge Component -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Standalone Badge</h4>
+          <span class="badge-tag">Component</span>
+        </div>
+        <p class="example-desc">Use <code>&lt;GooglePreferredSourceBadge /&gt;</code> standalone inside custom triggers or modals.</p>
+        <div class="example-preview center-preview">
+          <div class="custom-card-trigger">
+            <span class="sparkle">★</span>
+            <GooglePreferredSourceBadge lang="ja" theme="light" />
+          </div>
+        </div>
+        <pre class="code-block"><code>{`import GooglePreferredSourceBadge from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceBadge.astro';
+
+<div class="custom-container">
+  <GooglePreferredSourceBadge lang="ja" theme="light" />
+</div>`}</code></pre>
+      </div>
+
+      <!-- 4. Plain Text Link (badge={false}) -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Text Link with Slot</h4>
+          <span class="badge-tag">Text Mode</span>
+        </div>
+        <p class="example-desc">Accessible inline link for typography-rich article body text or newsletters.</p>
+        <div class="example-preview center-preview">
+          <GooglePreferredSourceDeeplink url={exampleSite} class="inline-text-cta">
+            Follow our news on Google Search &rarr;
+          </GooglePreferredSourceDeeplink>
+        </div>
+        <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
+  url="your-site.com"
+  class="inline-text-cta"
+>
+  Follow our news on Google Search &rarr;
+</GooglePreferredSourceDeeplink>`}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: STYLED & GLASSMORPHIC -->
+  <div class="tab-pane" id="tab-customized">
+    <div class="examples-grid">
+      <!-- 1. Google 4-Color Gradient Glow Card -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Google Gradient Aura Glow</h4>
+          <span class="badge-tag special">Popular</span>
+        </div>
+        <p class="example-desc">Interactive card featuring Google's 4-color gradient aura with smooth hover elevation.</p>
+        <div class="example-preview center-preview aura-stage">
+          <div class="google-aura-card">
+            <div class="aura-glow" aria-hidden="true"></div>
+            <div class="aura-content">
+              <span class="aura-title">Never miss a story</span>
+              <GooglePreferredSourceDeeplink url={exampleSite} lang="en" theme="light" />
+            </div>
+          </div>
+        </div>
+        <pre class="code-block"><code>{`<div class="google-aura-card">
+  <div class="aura-glow"></div>
+  <div class="aura-content">
+    <span>Never miss a story</span>
+    <GooglePreferredSourceDeeplink url="your-site.com" />
+  </div>
+</div>`}</code></pre>
+      </div>
+
+      <!-- 2. Glassmorphic Reader Toast / Pill -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Frosted Glass Reader Banner</h4>
+          <span class="badge-tag special">Glassmorphism</span>
+        </div>
+        <p class="example-desc">Backdrop-filtered floating notification banner for article footers.</p>
+        <div class="example-preview center-preview mesh-stage">
+          <div class="glass-toast">
+            <div class="toast-meta">
+              <span class="toast-dot"></span>
+              <strong>Reading on Magnifito?</strong>
+            </div>
+            <GooglePreferredSourceDeeplink
+              url={exampleSite}
+              lang="en"
+              theme="dark"
+              imageAttrs={{ class: "glass-badge" }}
+            />
+          </div>
+        </div>
+        <pre class="code-block"><code>{`<div class="glass-toast">
+  <div class="toast-meta">
+    <span class="toast-dot"></span>
+    <strong>Enjoying this article?</strong>
+  </div>
+  <GooglePreferredSourceDeeplink
+    url="your-site.com"
+    theme="dark"
+  />
+</div>`}</code></pre>
+      </div>
+
+      <!-- 3. Minimalist Editorial Masthead -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Editorial Publisher Callout</h4>
+          <span class="badge-tag">Editorial</span>
+        </div>
+        <p class="example-desc">Refined serif journalism layout with author attribution and preference opt-in.</p>
+        <div class="example-preview center-preview">
+          <div class="editorial-box">
+            <div class="editorial-quote">"Independent reporting powered by our readership."</div>
+            <div class="editorial-footer">
+              <span class="editorial-byline">Magnifito Editorial Board</span>
+              <GooglePreferredSourceDeeplink url={exampleSite} lang="en" theme="light" />
+            </div>
+          </div>
+        </div>
+        <pre class="code-block"><code>{`<div class="editorial-box">
+  <p>"Independent reporting powered by readers."</p>
+  <div class="editorial-footer">
+    <span>Editorial Board</span>
+    <GooglePreferredSourceDeeplink url="your-site.com" />
+  </div>
+</div>`}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: EXOTIC & EXPERIMENTAL -->
+  <div class="tab-pane" id="tab-exotic">
+    <div class="examples-grid">
+      <!-- 1. Cyberpunk / Retro Terminal HUD -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Cyberpunk Terminal HUD</h4>
+          <span class="badge-tag exotic">Exotic</span>
+        </div>
+        <p class="example-desc">Monospace cyber deck with CRT scanlines, neon glowing borders, and live telemetry status.</p>
+        <div class="example-preview center-preview cyber-stage">
+          <div class="cyber-terminal">
+            <div class="cyber-topbar">
+              <span class="cyber-dot green"></span>
+              <span class="cyber-title">FEED_STREAM // PREF_SOURCE</span>
+              <span class="cyber-status">ONLINE</span>
+            </div>
+            <div class="cyber-body">
+              <div class="cyber-code">&gt; LINK_PROTOCOL: ESTABLISHED</div>
+              <GooglePreferredSourceDeeplink
+                url={exampleSite}
+                lang="en"
+                theme="dark"
+                class="cyber-deeplink-btn"
+              />
+            </div>
+          </div>
+        </div>
+        <pre class="code-block"><code>{`<div class="cyber-terminal">
+  <div class="cyber-topbar">
+    <span class="cyber-status">ONLINE</span>
+  </div>
+  <div class="cyber-body">
+    <code>&gt; LINK_PROTOCOL: ACTIVE</code>
+    <GooglePreferredSourceDeeplink
+      url="your-site.com"
+      theme="dark"
+    />
+  </div>
+</div>`}</code></pre>
+      </div>
+
+      <!-- 2. 3D Holographic Perspective Card -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>3D Holographic Foil Card</h4>
+          <span class="badge-tag exotic">3D Motion</span>
+        </div>
+        <p class="example-desc">Interactive 3D tilt perspective with iridescent specular shimmer on cursor hover.</p>
+        <div class="example-preview center-preview">
+          <div class="holo-card" id="holoCard">
+            <div class="holo-foil" aria-hidden="true"></div>
+            <div class="holo-inner">
+              <div class="holo-badge-header">
+                <span class="holo-star">✦</span>
+                <span class="holo-label">PREFERRED SOURCE</span>
+              </div>
+              <GooglePreferredSourceDeeplink url={exampleSite} lang="ko" theme="light" />
+            </div>
+          </div>
+        </div>
+        <pre class="code-block"><code>{`<div class="holo-card">
+  <div class="holo-foil"></div>
+  <div class="holo-inner">
+    <span>✦ PREFERRED SOURCE</span>
+    <GooglePreferredSourceDeeplink url="your-site.com" lang="ko" />
+  </div>
+</div>`}</code></pre>
+      </div>
+
+      <!-- 3. Sticky Floating Action Pill (FAB) -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Sticky Floating Reader FAB</h4>
+          <span class="badge-tag exotic">Interactive</span>
+        </div>
+        <p class="example-desc">Floating action pill for fixed viewports with subtle pulse micro-animation.</p>
+        <div class="example-preview center-preview">
+          <div class="floating-fab-container">
+            <div class="fab-pulse" aria-hidden="true"></div>
+            <GooglePreferredSourceDeeplink
+              url={exampleSite}
+              lang="en"
+              theme="dark"
+              class="fab-pill"
+            />
+          </div>
+        </div>
+        <pre class="code-block"><code>{`<div class="floating-fab-container">
+  <div class="fab-pulse"></div>
+  <GooglePreferredSourceDeeplink
+    url="your-site.com"
+    theme="dark"
+    class="fab-pill"
+  />
+</div>`}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Tab switcher
+  const tabButtons = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+  const tabPanes = document.querySelectorAll<HTMLElement>('.tab-pane');
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = `tab-${btn.dataset.tab}`;
+      tabButtons.forEach((b) => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      tabPanes.forEach((p) => p.classList.remove('active'));
+
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const targetPane = document.getElementById(targetId);
+      if (targetPane) targetPane.classList.add('active');
+    });
+  });
+
+  // 3D Tilt interactive effect
+  const holoCard = document.getElementById('holoCard');
+  if (holoCard) {
+    holoCard.addEventListener('mousemove', (e) => {
+      const rect = holoCard.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotateX = -(y / rect.height) * 20;
+      const rotateY = (x / rect.width) * 20;
+      holoCard.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    holoCard.addEventListener('mouseleave', () => {
+      holoCard.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    });
+  }
+</script>
+
+<style>
+  .showcase-container {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .showcase-nav {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.35rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: fit-content;
+  }
+
+  .tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.1rem;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tab-btn:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .tab-btn.active {
+    background: var(--accent);
+    color: #0b0f19;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .tab-pane {
+    display: none;
+  }
+
+  .tab-pane.active {
+    display: block;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .example-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .example-card:hover {
+    border-color: var(--line-strong, rgba(255, 255, 255, 0.2));
+  }
+
+  .example-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .example-header h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .badge-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+
+  .badge-tag.special {
+    background: rgba(66, 133, 244, 0.15);
+    color: #8ab4f8;
+    border: 1px solid rgba(66, 133, 244, 0.3);
+  }
+
+  .badge-tag.exotic {
+    background: rgba(234, 67, 53, 0.15);
+    color: #f28b82;
+    border: 1px solid rgba(234, 67, 53, 0.3);
+  }
+
+  .example-desc {
+    margin: 0;
+    font-size: 0.86rem;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .example-preview {
+    min-height: 120px;
+    padding: 1.25rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .example-preview.dark-bg {
+    background: #0d1117;
+  }
+
+  .code-block {
+    margin: 0;
+    padding: 0.85rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    font-size: 0.76rem;
+    overflow-x: auto;
+  }
+
+  /* Custom trigger */
+  .custom-card-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+  }
+
+  .sparkle {
+    color: #fbbc05;
+    font-size: 1.1rem;
+  }
+
+  /* Text CTA */
+  .inline-text-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #8ab4f8;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(66, 133, 244, 0.1);
+    border: 1px solid rgba(66, 133, 244, 0.25);
+    transition: all 0.2s ease;
+  }
+
+  .inline-text-cta:hover {
+    background: rgba(66, 133, 244, 0.2);
+    transform: translateX(2px);
+  }
+
+  /* Google Aura Glow */
+  .aura-stage {
+    background: #090d16;
+  }
+
+  .google-aura-card {
+    position: relative;
+    border-radius: 16px;
+    padding: 1.25rem;
+    background: #151922;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  .aura-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
+    opacity: 0.45;
+    filter: blur(10px);
+    z-index: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .google-aura-card:hover .aura-glow {
+    opacity: 0.85;
+  }
+
+  .aura-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .aura-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #e8eaed;
+  }
+
+  /* Frosted Glass Toast */
+  .mesh-stage {
+    background: radial-gradient(circle at top left, #1a237e 0%, #0d1117 70%);
+  }
+
+  .glass-toast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.2rem;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .toast-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.84rem;
+    color: #ffffff;
+  }
+
+  .toast-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34a853;
+    box-shadow: 0 0 8px #34a853;
+  }
+
+  /* Editorial Box */
+  .editorial-box {
+    width: 100%;
+    padding: 1rem;
+    border-top: 2px solid var(--text);
+    border-bottom: 2px solid var(--text);
+    background: #fbfbf9;
+    color: #1a1a1a;
+    font-family: 'Georgia', serif;
+  }
+
+  .editorial-quote {
+    font-style: italic;
+    font-size: 0.92rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .editorial-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .editorial-byline {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Cyberpunk Terminal */
+  .cyber-stage {
+    background: #020608;
+  }
+
+  .cyber-terminal {
+    width: 100%;
+    background: #050d10;
+    border: 1px solid #00ff66;
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.25);
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+  }
+
+  .cyber-topbar {
+    background: #00ff66;
+    color: #020608;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .cyber-body {
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+
+  .cyber-code {
+    font-size: 0.78rem;
+    color: #00ff66;
+    text-shadow: 0 0 5px #00ff66;
+  }
+
+  /* 3D Holo Card */
+  .holo-card {
+    position: relative;
+    padding: 1.25rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #1e2430 0%, #0e121a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    cursor: pointer;
+  }
+
+  .holo-foil {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 0, 150, 0.2) 40%, rgba(0, 255, 255, 0.25) 60%, transparent 80%);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .holo-inner {
+    position: relative;
+    transform: translateZ(30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .holo-badge-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #00e5ff;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+  }
+
+  /* Floating FAB */
+  .floating-fab-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fab-pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 100px;
+    background: rgba(66, 133, 244, 0.4);
+    animation: pulseWave 2s infinite ease-in-out;
+    z-index: 0;
+  }
+
+  @keyframes pulseWave {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 0.3; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+  }
+
+  :global(.fab-pill) {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  :global(.fab-pill:hover) {
+    transform: scale(1.05) translateY(-2px);
+  }
+</style>

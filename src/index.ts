@@ -75,3 +75,17 @@ export default function googlePreferredSource(
     },
   };
 }
+
+export {
+  getBadgeAlt,
+  getPreferredSourceDeeplinkUrl,
+  normalizeLanguageCode,
+  supportedBadgeLanguages,
+  OFFICIAL_BADGE_ALTS,
+  getBadgeAssetKey,
+  type BadgeTheme,
+  type BadgeSize,
+  type ImageAsset,
+} from './assets/badges.ts';
+
+

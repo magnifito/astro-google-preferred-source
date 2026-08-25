@@ -135,37 +135,75 @@ Both client modules expose the same API:
 
 ## Deeplink implementation
 
-For environments without JavaScript, or for links in newsletters and social posts, use the deeplink component:
+For environments without JavaScript, newsletters, social posts, or custom UI layouts, use the deeplink and badge components:
+
+### Component-based badge deeplink
 
 ```astro
 ---
 import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
 ---
 
-<GooglePreferredSourceDeeplink url="example.com">
-  Add us as a preferred source
-</GooglePreferredSourceDeeplink>
+<!-- Automatically outputs the official Google badge, retina srcset, and localized alt text -->
+<GooglePreferredSourceDeeplink
+  url="example.com"
+  lang="ko"
+  theme="light"
+/>
 ```
 
 The component renders a link to `https://www.google.com/preferences/source?q=<url>` with `target="_blank"` and `rel="noopener noreferrer"`.
 
-### Deeplink with an image
+### Standalone badge component
+
+If you need the official badge image inside your own custom button, dialog, or card:
+
+```astro
+---
+import GooglePreferredSourceBadge from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceBadge.astro';
+---
+
+<div class="custom-card">
+  <GooglePreferredSourceBadge lang="ja" theme="dark" />
+</div>
+```
+
+### Custom slot or text link
 
 ```astro
 <GooglePreferredSourceDeeplink url="example.com">
-  <img src="/path/to/button.png" alt="Add as preferred source" />
+  Follow our news on Google Search &rarr;
 </GooglePreferredSourceDeeplink>
 ```
 
-Google provides [official translated button assets](https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip) you can download and host yourself.
+### Deeplink Props (`GooglePreferredSourceDeeplink`)
 
-### Deeplink Props
+| Prop         | Type                  | Description                                                                          |
+| ------------ | --------------------- | ------------------------------------------------------------------------------------ |
+| `url`        | `string`              | Publication URL or domain name. Required.                                            |
+| `theme`      | `'light' \| 'dark'`  | Badge theme. Defaults to `'light'`.                                                  |
+| `lang`       | `string`              | Badge language code (`'en'`, `'ko'`, `'ja'`, etc.). Defaults to `'en'`.              |
+| `size`       | `'1x' \| '2x'`        | Base badge resolution. Defaults to `'1x'`.                                           |
+| `highDpi`    | `boolean`             | Output 2x `srcset` for high-DPI displays. Defaults to `true`.                         |
+| `alt`        | `string`              | Custom alt text override. Defaults to official localized Google wording for `lang`.  |
+| `imageSrc`   | `string`              | Custom image URL override if using a custom badge graphic.                           |
+| `imageAttrs` | `HTMLAttributes<'img'>` | HTML attributes forwarded directly to the inner `<img>` element.                   |
+| `badge`      | `boolean`             | Render badge image when no custom slot is provided. Defaults to `true`.              |
 
-| Prop  | Type     | Description                                                              |
-| ----- | -------- | ------------------------------------------------------------------------ |
-| `url` | `string` | Publication URL or domain name. Required.                                |
+All standard `<a>` HTML attributes are also accepted on `GooglePreferredSourceDeeplink`.
 
-All standard `<a>` HTML attributes are also accepted.
+### Badge Props (`GooglePreferredSourceBadge`)
+
+| Prop      | Type                 | Description                                                                          |
+| --------- | -------------------- | ------------------------------------------------------------------------------------ |
+| `theme`   | `'light' \| 'dark'` | Badge theme. Defaults to `'light'`.                                                  |
+| `lang`    | `string`             | Badge language code (`'en'`, `'ko'`, `'ja'`, etc.). Defaults to `'en'`.              |
+| `size`    | `'1x' \| '2x'`       | Base badge resolution. Defaults to `'1x'`.                                           |
+| `highDpi` | `boolean`            | Output 2x `srcset` for high-DPI displays. Defaults to `true`.                         |
+| `alt`     | `string`             | Custom alt text override. Defaults to official localized Google wording for `lang`.  |
+| `src`     | `string`             | Custom image source override.                                                        |
+
+All standard `<img>` HTML attributes are also accepted on `GooglePreferredSourceBadge`.
 
 ## Integration Options
 

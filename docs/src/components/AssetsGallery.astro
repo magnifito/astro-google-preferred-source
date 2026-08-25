@@ -1,5 +1,6 @@
 ---
-import { languages, getAssetPath } from '../data/languages';
+import { languages } from '../data/languages';
+import GooglePreferredSourceBadge from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceBadge.astro';
 
 const assetLanguages = languages.filter((l) => l.hasAssets);
 ---
@@ -7,28 +8,25 @@ const assetLanguages = languages.filter((l) => l.hasAssets);
 <div class="gallery">
   {assetLanguages.map((lang) => (
     <div class="asset-card">
-      <h3>{lang.name}</h3>
+      <div class="card-header">
+        <h3>{lang.name}</h3>
+        <span class="lang-tag">{lang.code.toUpperCase()}</span>
+      </div>
       <div class="variants">
-        <div class="asset-preview light">
-          <img
-            src={getAssetPath(lang, 'light')}
-            alt={`${lang.name} light badge`}
-            loading="lazy"
-          />
+        <div class="asset-preview light" title={`${lang.name} Light Badge`}>
+          <GooglePreferredSourceBadge lang={lang.code} theme="light" />
         </div>
-        <div class="asset-preview dark">
-          <img
-            src={getAssetPath(lang, 'dark')}
-            alt={`${lang.name} dark badge`}
-            loading="lazy"
-          />
+        <div class="asset-preview dark" title={`${lang.name} Dark Badge`}>
+          <GooglePreferredSourceBadge lang={lang.code} theme="dark" />
         </div>
       </div>
       <details>
         <summary>Embed code</summary>
-        <pre><code>{`<GooglePreferredSourceDeeplink url="your-site.com">
-  <img src="${getAssetPath(lang, 'light')}" alt="Add as preferred source" />
-</GooglePreferredSourceDeeplink>`}</code></pre>
+        <pre><code>{`<GooglePreferredSourceDeeplink
+  url="your-site.com"
+  lang="${lang.code}"
+  theme="light"
+/>`}</code></pre>
       </details>
     </div>
   ))}
@@ -37,35 +35,57 @@ const assetLanguages = languages.filter((l) => l.hasAssets);
 <style>
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
     margin-top: 1rem;
   }
   .asset-card {
     min-width: 0;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .asset-card:hover {
+    border-color: var(--line-strong, rgba(255, 255, 255, 0.2));
+    transform: translateY(-2px);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   .asset-card h3 {
-    margin: 0 0 0.75rem;
+    margin: 0;
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.98rem;
-    font-weight: 800;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .lang-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+    letter-spacing: 0.04em;
   }
   .variants {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
   .asset-preview {
-    padding: 0.5rem;
+    padding: 0.75rem 0.5rem;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 56px;
+    min-height: 64px;
   }
   .asset-preview.light {
     background: #ffffff;
@@ -73,24 +93,35 @@ const assetLanguages = languages.filter((l) => l.hasAssets);
   }
   .asset-preview.dark {
     background: #121416;
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .asset-preview img {
+  .asset-preview :global(img) {
     max-width: 100%;
     height: auto;
+    display: block;
   }
   .asset-card details {
-    margin-top: 0.75rem;
+    margin-top: 0.25rem;
+    border-top: 1px solid var(--border);
+    padding-top: 0.5rem;
   }
   .asset-card summary {
     cursor: pointer;
     color: var(--muted);
-    font-size: 0.84rem;
-    font-weight: 800;
+    font-size: 0.82rem;
+    font-weight: 600;
+    user-select: none;
+  }
+  .asset-card summary:hover {
+    color: var(--text);
   }
   .asset-card pre {
     margin-top: 0.5rem;
     font-size: 0.75rem;
     white-space: pre-wrap;
     word-break: break-word;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.75rem;
+    border-radius: 6px;
   }
 </style>

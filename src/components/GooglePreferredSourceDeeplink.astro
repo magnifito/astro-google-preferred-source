@@ -1,20 +1,89 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import GooglePreferredSourceBadge from './GooglePreferredSourceBadge.astro';
+import { getPreferredSourceDeeplinkUrl, type BadgeTheme, type BadgeSize } from '../assets/badges';
 
 export interface Props extends HTMLAttributes<'a'> {
   /** Publication URL or domain name passed to the Google source preferences tool. */
   url: string;
+  /**
+   * Badge theme.
+   * @default 'light'
+   */
+  theme?: BadgeTheme;
+  /**
+   * Badge language code (e.g. 'en', 'ko', 'ja', 'es', 'de', etc.).
+   * @default 'en'
+   */
+  lang?: string;
+  /**
+   * Badge base resolution ('1x' | '2x').
+   * @default '1x'
+   */
+  size?: BadgeSize;
+  /**
+   * Whether to include high-DPI (2x) srcset.
+   * @default true
+   */
+  highDpi?: boolean;
+  /**
+   * Custom image source override if using a custom badge graphic.
+   */
+  imageSrc?: string;
+  /**
+   * HTML attributes forwarded directly to the inner <img> element.
+   */
+  imageAttrs?: HTMLAttributes<'img'>;
+  /**
+   * Custom alt text override. Defaults to the official localized Google wording for the language.
+   */
+  alt?: string;
+  /**
+   * Whether to automatically render a badge image when no custom slot is provided.
+   * Set to `false` to render a plain accessible text link instead.
+   * @default true
+   */
+  badge?: boolean;
 }
 
-const { url, ...attrs } = Astro.props;
-const href = `https://www.google.com/preferences/source?q=${encodeURIComponent(url)}`;
+const {
+  url,
+  theme = 'light',
+  lang = 'en',
+  size = '1x',
+  highDpi = true,
+  imageSrc,
+  imageAttrs = {},
+  alt,
+  badge = true,
+  target = '_blank',
+  rel = 'noopener noreferrer',
+  ...attrs
+} = Astro.props;
+
+const href = getPreferredSourceDeeplinkUrl(url);
+const hasCustomSlot = Astro.slots.has('default');
 ---
 
 <a
   href={href}
-  target="_blank"
-  rel="noopener noreferrer"
+  target={target}
+  rel={rel}
   {...attrs}
 >
-  <slot>Add as Preferred Source</slot>
+  {hasCustomSlot ? (
+    <slot />
+  ) : badge ? (
+    <GooglePreferredSourceBadge
+      theme={theme}
+      lang={lang}
+      size={size}
+      highDpi={highDpi}
+      src={imageSrc}
+      alt={alt}
+      {...imageAttrs}
+    />
+  ) : (
+    <slot>Add as Preferred Source</slot>
+  )}
 </a>

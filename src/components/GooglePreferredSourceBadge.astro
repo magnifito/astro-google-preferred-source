@@ -1,0 +1,85 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { ImageMetadata } from 'astro';
+import {
+  getBadgeAlt,
+  normalizeLanguageCode,
+  getBadgeAssetKey,
+  type BadgeTheme,
+  type BadgeSize,
+} from '../assets/badges';
+
+export interface Props extends HTMLAttributes<'img'> {
+  /**
+   * Badge theme.
+   * @default 'light'
+   */
+  theme?: BadgeTheme;
+  /**
+   * Badge language code (e.g. 'en', 'ko', 'ja', 'es', 'de', etc.).
+   * @default 'en'
+   */
+  lang?: string;
+  /**
+   * Badge resolution ('1x' | '2x').
+   * @default '1x'
+   */
+  size?: BadgeSize;
+  /**
+   * Whether to include high-DPI (2x) srcset.
+   * @default true
+   */
+  highDpi?: boolean;
+  /**
+   * Custom image source override.
+   */
+  src?: string;
+  /**
+   * Custom alt text override. Defaults to the official localized Google text for the language.
+   */
+  alt?: string;
+}
+
+const {
+  theme = 'light',
+  lang = 'en',
+  size = '1x',
+  highDpi = true,
+  src: customSrc,
+  alt: customAlt,
+  loading = 'lazy',
+  decoding = 'async',
+  ...attrs
+} = Astro.props;
+
+const badgeImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/preferred-sources/**/*.png',
+  { eager: true }
+);
+
+const normLang = normalizeLanguageCode(lang);
+const key1x = getBadgeAssetKey(normLang, theme, '1x');
+const key2x = getBadgeAssetKey(normLang, theme, '2x');
+const fallbackKey = '../assets/preferred-sources/EN/google_preferred_source_badge_light_en.png';
+
+const img1x = (badgeImages[key1x] ?? badgeImages[fallbackKey])?.default;
+const img2x = (badgeImages[key2x] ?? badgeImages[fallbackKey])?.default;
+const selectedImg = size === '2x' ? img2x : img1x;
+
+const imgSrc = customSrc ?? selectedImg?.src;
+const imgAlt = customAlt ?? getBadgeAlt(normLang);
+const imgWidth = attrs.width ?? (selectedImg?.width ? (size === '2x' ? Math.round(selectedImg.width / 2) : selectedImg.width) : undefined);
+const imgHeight = attrs.height ?? (selectedImg?.height ? (size === '2x' ? Math.round(selectedImg.height / 2) : selectedImg.height) : undefined);
+const imgSrcset = !customSrc && highDpi && img1x && img2x ? `${img1x.src} 1x, ${img2x.src} 2x` : undefined;
+---
+
+<img
+  src={imgSrc}
+  srcset={imgSrcset}
+  width={imgWidth}
+  height={imgHeight}
+  alt={imgAlt}
+  loading={loading}
+  decoding={decoding}
+  {...attrs}
+/>
