@@ -62,5 +62,5 @@ export function getAssetPath(lang: Language, theme: 'light' | 'dark', size: '1x'
   const dir = lang.code.toUpperCase();
   const fileCode = lang.code === 'en' ? 'en' : dir;
   const suffix = size === '2x' ? '@2x' : '';
-  return `/astro-google-preferred-source/assets/preferred-sources/${dir}/google_preferred_source_badge_${theme}_${fileCode}${suffix}.png`;
+  return `${import.meta.env.BASE_URL}assets/preferred-sources/${dir}/google_preferred_source_badge_${theme}_${fileCode}${suffix}.png`;
 }

@@ -8,19 +8,21 @@ const assetLanguages = languages.filter((l) => l.hasAssets);
   {assetLanguages.map((lang) => (
     <div class="asset-card">
       <h3>{lang.name}</h3>
-      <div class="asset-preview light">
-        <img
-          src={getAssetPath(lang, 'light')}
-          alt={`${lang.name} light badge`}
-          loading="lazy"
-        />
-      </div>
-      <div class="asset-preview dark">
-        <img
-          src={getAssetPath(lang, 'dark')}
-          alt={`${lang.name} dark badge`}
-          loading="lazy"
-        />
+      <div class="variants">
+        <div class="asset-preview light">
+          <img
+            src={getAssetPath(lang, 'light')}
+            alt={`${lang.name} light badge`}
+            loading="lazy"
+          />
+        </div>
+        <div class="asset-preview dark">
+          <img
+            src={getAssetPath(lang, 'dark')}
+            alt={`${lang.name} dark badge`}
+            loading="lazy"
+          />
+        </div>
       </div>
       <details>
         <summary>Embed code</summary>
@@ -41,6 +43,7 @@ const assetLanguages = languages.filter((l) => l.hasAssets);
   }
   .asset-card {
     background: var(--card);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1rem;
   }
@@ -48,17 +51,22 @@ const assetLanguages = languages.filter((l) => l.hasAssets);
     margin: 0 0 0.75rem;
     font-size: 1rem;
   }
+  .variants {
+    display: flex;
+    gap: 0.5rem;
+  }
   .asset-preview {
-    padding: 1rem;
+    flex: 1;
+    padding: 0.5rem;
     border-radius: 8px;
-    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 60px;
+    min-height: 48px;
   }
   .asset-preview.light {
-    background: #f8fafc;
+    background: #ffffff;
+    border: 1px solid var(--border);
   }
   .asset-preview.dark {
     background: #0f172a;
