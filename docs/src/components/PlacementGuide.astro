@@ -1,0 +1,500 @@
+---
+import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
+
+const exampleSite = 'magnifito.github.io';
+---
+
+<div class="placement-guide">
+  <div class="placement-cards">
+    <!-- 1. Article End (Highest Conversion) -->
+    <div class="placement-card featured">
+      <div class="card-top">
+        <div class="placement-badge highest">🔥 Highest Conversion</div>
+        <h3>1. End of Article / Post</h3>
+        <p class="placement-why">
+          <strong>Why it works:</strong> Peak intent. When a reader finishes an entire article, their trust and satisfaction with your reporting are at their absolute highest.
+        </p>
+      </div>
+      <div class="mini-ui-frame">
+        <div class="article-end-mockup">
+          <div class="mockup-text-lines">
+            <div class="mock-line full"></div>
+            <div class="mock-line three-quarter"></div>
+          </div>
+          <div class="mockup-cta-box">
+            <span class="cta-heading">Never miss our next investigation</span>
+            <GooglePreferredSourceDeeplink
+              url={exampleSite}
+              variant="pill"
+              label="Follow on Google Search"
+              theme="dark"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="placement-code">
+        <pre><code>{`<aside class="article-footer-cta">
+  <p>Never miss our next story</p>
+  <GooglePreferredSourceDeeplink
+    url="your-site.com"
+    variant="pill"
+    label="Follow on Google Search"
+  />
+</aside>`}</code></pre>
+      </div>
+    </div>
+
+    <!-- 2. Header Navbar (Maximum Visibility) -->
+    <div class="placement-card">
+      <div class="card-top">
+        <div class="placement-badge">👁️ Maximum Visibility</div>
+        <h3>2. Header / Top Navigation</h3>
+        <p class="placement-why">
+          <strong>Why it works:</strong> Zero-scroll presence. Appears instantly on every page view next to RSS feeds, theme toggles, and search bars.
+        </p>
+      </div>
+      <div class="mini-ui-frame">
+        <div class="header-nav-mockup">
+          <div class="mock-logo">MAGNIFITO</div>
+          <div class="mock-nav-items">
+            <span>News</span>
+            <span>Tech</span>
+            <GooglePreferredSourceDeeplink
+              url={exampleSite}
+              variant="outline"
+              size="sm"
+              label="Follow"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="placement-code">
+        <pre><code>{`<nav class="site-nav">
+  <Logo />
+  <div class="nav-links">
+    <GooglePreferredSourceDeeplink
+      url="your-site.com"
+      variant="outline"
+      size="sm"
+      label="Follow"
+    />
+  </div>
+</nav>`}</code></pre>
+      </div>
+    </div>
+
+    <!-- 3. Floating Reader Toast (High Engagement) -->
+    <div class="placement-card">
+      <div class="card-top">
+        <div class="placement-badge">⚡ High Engagement</div>
+        <h3>3. Floating Reader Banner</h3>
+        <p class="placement-why">
+          <strong>Why it works:</strong> Catches actively engaged readers as they scroll midway through long-form stories without blocking content.
+        </p>
+      </div>
+      <div class="mini-ui-frame glass-stage">
+        <div class="floating-pill-mockup">
+          <span class="live-pulse"></span>
+          <span class="pill-text">Reading on Magnifito?</span>
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="pill"
+            size="sm"
+            label="Add to Google"
+            theme="dark"
+          />
+        </div>
+      </div>
+      <div class="placement-code">
+        <pre><code>{`<div class="floating-reader-pill">
+  <span>Enjoying this guide?</span>
+  <GooglePreferredSourceDeeplink
+    url="your-site.com"
+    variant="pill"
+    size="sm"
+    label="Add to Google"
+  />
+</div>`}</code></pre>
+      </div>
+    </div>
+
+    <!-- 4. Author Bio & Editorial Byline (Personal Trust) -->
+    <div class="placement-card">
+      <div class="card-top">
+        <div class="placement-badge">✍️ Personal Trust</div>
+        <h3>4. Author Bio / Editorial Box</h3>
+        <p class="placement-why">
+          <strong>Why it works:</strong> Connects author credibility directly with publication loyalty for opinion pieces, columns, and specialist beats.
+        </p>
+      </div>
+      <div class="mini-ui-frame">
+        <div class="author-box-mockup">
+          <div class="author-avatar">AK</div>
+          <div class="author-details">
+            <span class="author-name">Alex Kirov</span>
+            <span class="author-role">Senior Technology Reporter</span>
+          </div>
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="minimal"
+            size="sm"
+            label="Follow Publication"
+          />
+        </div>
+      </div>
+      <div class="placement-code">
+        <pre><code>{`<div class="author-bio">
+  <Avatar />
+  <BioText />
+  <GooglePreferredSourceDeeplink
+    url="your-site.com"
+    variant="minimal"
+    size="sm"
+    label="Follow Publication"
+  />
+</div>`}</code></pre>
+      </div>
+    </div>
+
+    <!-- 5. Email Newsletters & Social Bios (Off-Site Reach) -->
+    <div class="placement-card">
+      <div class="card-top">
+        <div class="placement-badge">📬 Off-Site Reach</div>
+        <h3>5. Newsletters & Social Links</h3>
+        <p class="placement-why">
+          <strong>Why it works:</strong> Email clients block JS scripts. The deeplink generates a direct Google preferences URL that opens 1-click preference confirmation.
+        </p>
+      </div>
+      <div class="mini-ui-frame">
+        <div class="newsletter-mockup">
+          <span class="newsletter-title">WEEKLY DIGEST FOOTER</span>
+          <p class="newsletter-sub">"Prefer getting updates on Google Search?"</p>
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="button"
+            size="sm"
+            label="Add us as a preferred source &rarr;"
+            theme="light"
+          />
+        </div>
+      </div>
+      <div class="placement-code">
+        <pre><code>{`<!-- In email newsletters or link-in-bio -->
+<p>
+  See our stories first:
+  <GooglePreferredSourceDeeplink url="your-site.com">
+    Add us on Google Search
+  </GooglePreferredSourceDeeplink>
+</p>`}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="placement-tips-banner">
+    <div class="tips-icon">💡</div>
+    <div class="tips-content">
+      <h4>Optimization Best Practices</h4>
+      <ul>
+        <li><strong>Pair with a short benefit CTA:</strong> Tell readers what happens (e.g. <em>"See our stories first in Google Search & Top Stories"</em>).</li>
+        <li><strong>Maintain clean visual balance:</strong> Stick to 1 prominent callout at the end of articles, plus a compact button in the header or footer.</li>
+        <li><strong>Use vector variants:</strong> Stadium pills (`variant="pill"`) and outline badges (`variant="outline"`) seamlessly adapt to light and dark themes.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .placement-guide {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .placement-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .placement-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .placement-card:hover {
+    border-color: var(--line-strong, rgba(255, 255, 255, 0.2));
+    transform: translateY(-2px);
+  }
+
+  .placement-card.featured {
+    border-color: rgba(66, 133, 244, 0.35);
+    box-shadow: 0 4px 20px rgba(66, 133, 244, 0.08);
+  }
+
+  .card-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .placement-badge {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+  }
+
+  .placement-badge.highest {
+    background: rgba(234, 67, 53, 0.15);
+    color: #ff7666;
+    border: 1px solid rgba(234, 67, 53, 0.3);
+  }
+
+  .placement-card h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+
+  .placement-why {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .placement-why strong {
+    color: var(--text);
+  }
+
+  .mini-ui-frame {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 130px;
+  }
+
+  .mini-ui-frame.glass-stage {
+    background: radial-gradient(circle at top left, #1a237e 0%, #0d1117 80%);
+  }
+
+  /* Mockup 1: Article End */
+  .article-end-mockup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .mockup-text-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .mock-line {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .mock-line.full { width: 100%; }
+  .mock-line.three-quarter { width: 75%; }
+
+  .mockup-cta-box {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: center;
+  }
+
+  .cta-heading {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* Mockup 2: Header Nav */
+  .header-nav-mockup {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mock-logo {
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+  .mock-nav-items {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* Mockup 3: Floating Pill */
+  .floating-pill-mockup {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 100px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .live-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34a853;
+    box-shadow: 0 0 8px #34a853;
+  }
+
+  .pill-text {
+    font-size: 0.82rem;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  /* Mockup 4: Author Box */
+  .author-box-mockup {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+  }
+
+  .author-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .author-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .author-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .author-role {
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  /* Mockup 5: Newsletter */
+  .newsletter-mockup {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .newsletter-title {
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .newsletter-sub {
+    margin: 0 0 0.4rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--text);
+  }
+
+  .placement-code pre {
+    margin: 0;
+    padding: 0.85rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    overflow-x: auto;
+  }
+
+  /* Tips Banner */
+  .placement-tips-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: rgba(66, 133, 244, 0.08);
+    border: 1px solid rgba(66, 133, 244, 0.25);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .tips-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .tips-content h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #8ab4f8;
+  }
+
+  .tips-content ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+</style>
