@@ -1,137 +1,206 @@
 ---
 import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
-import GooglePreferredSourceBadge from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceBadge.astro';
+import GoogleIcon from '@puralex/astro-google-preferred-source/components/GoogleIcon.astro';
 
 const exampleSite = 'magnifito.github.io';
 ---
 
 <div class="showcase-container">
   <div class="showcase-nav" role="tablist" aria-label="Examples Categories">
-    <button class="tab-btn active" data-tab="basic" role="tab" aria-selected="true">
-      <span class="tab-icon">✨</span> Standard & Basic
+    <button class="tab-btn active" data-tab="buttons" role="tab" aria-selected="true">
+      <span class="tab-icon">✨</span> Button Variants
     </button>
-    <button class="tab-btn" data-tab="customized" role="tab" aria-selected="false">
-      <span class="tab-icon">🎨</span> Styled & Glassmorphic
+    <button class="tab-btn" data-tab="layouts" role="tab" aria-selected="false">
+      <span class="tab-icon">🎨</span> Custom Layouts
     </button>
     <button class="tab-btn" data-tab="exotic" role="tab" aria-selected="false">
       <span class="tab-icon">⚡</span> Exotic & Experimental
     </button>
   </div>
 
-  <!-- TAB 1: BASIC & STANDARD -->
-  <div class="tab-pane active" id="tab-basic">
+  <!-- TAB 1: BUTTON VARIANTS -->
+  <div class="tab-pane active" id="tab-buttons">
     <div class="examples-grid">
-      <!-- 1. Default Badge -->
+      <!-- 1. Modern Pill -->
       <div class="example-card">
         <div class="example-header">
-          <h4>Default Localized Badge</h4>
-          <span class="badge-tag">Standard</span>
+          <h4>Modern Stadium Pill</h4>
+          <span class="badge-tag">variant="pill"</span>
         </div>
-        <p class="example-desc">Zero configuration. Automatically outputs retina srcset and official localized alt text.</p>
+        <p class="example-desc">Crisp vector Google 'G' icon with arbitrary text and smooth hover elevation.</p>
         <div class="example-preview center-preview">
-          <GooglePreferredSourceDeeplink url={exampleSite} lang="en" theme="light" />
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="pill"
+            label="Follow on Google"
+            theme="light"
+          />
         </div>
         <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
   url="your-site.com"
-  lang="en"
+  variant="pill"
+  label="Follow on Google"
   theme="light"
 />`}</code></pre>
       </div>
 
-      <!-- 2. Dark Theme & Multilingual -->
+      <!-- 2. Dark Solid Button -->
       <div class="example-card">
         <div class="example-header">
-          <h4>Dark Theme (Korean)</h4>
-          <span class="badge-tag">Multilingual</span>
+          <h4>Dark Solid Button</h4>
+          <span class="badge-tag">variant="button"</span>
         </div>
-        <p class="example-desc">Official dark palette with native Korean text and 2x resolution support.</p>
+        <p class="example-desc">Dark mode rectangular button with rounded corners and arbitrary localized text.</p>
         <div class="example-preview center-preview dark-bg">
-          <GooglePreferredSourceDeeplink url={exampleSite} lang="ko" theme="dark" />
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="button"
+            label="선호하는 출처로 추가"
+            theme="dark"
+          />
         </div>
         <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
   url="your-site.com"
-  lang="ko"
+  variant="button"
+  label="선호하는 출처로 추가"
   theme="dark"
 />`}</code></pre>
       </div>
 
-      <!-- 3. Standalone Badge Component -->
+      <!-- 3. Outline / Ghost Button -->
       <div class="example-card">
         <div class="example-header">
-          <h4>Standalone Badge</h4>
-          <span class="badge-tag">Component</span>
+          <h4>Outline / Ghost Pill</h4>
+          <span class="badge-tag">variant="outline"</span>
         </div>
-        <p class="example-desc">Use <code>&lt;GooglePreferredSourceBadge /&gt;</code> standalone inside custom triggers or modals.</p>
+        <p class="example-desc">Transparent background that inherits any surface with a Google-blue hover accent.</p>
         <div class="example-preview center-preview">
-          <div class="custom-card-trigger">
-            <span class="sparkle">★</span>
-            <GooglePreferredSourceBadge lang="ja" theme="light" />
-          </div>
-        </div>
-        <pre class="code-block"><code>{`import GooglePreferredSourceBadge from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceBadge.astro';
-
-<div class="custom-container">
-  <GooglePreferredSourceBadge lang="ja" theme="light" />
-</div>`}</code></pre>
-      </div>
-
-      <!-- 4. Plain Text Link (badge={false}) -->
-      <div class="example-card">
-        <div class="example-header">
-          <h4>Text Link with Slot</h4>
-          <span class="badge-tag">Text Mode</span>
-        </div>
-        <p class="example-desc">Accessible inline link for typography-rich article body text or newsletters.</p>
-        <div class="example-preview center-preview">
-          <GooglePreferredSourceDeeplink url={exampleSite} class="inline-text-cta">
-            Follow our news on Google Search &rarr;
-          </GooglePreferredSourceDeeplink>
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="outline"
+            label="Add as Preferred Source"
+          />
         </div>
         <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
   url="your-site.com"
-  class="inline-text-cta"
->
-  Follow our news on Google Search &rarr;
-</GooglePreferredSourceDeeplink>`}</code></pre>
+  variant="outline"
+  label="Add as Preferred Source"
+/>`}</code></pre>
+      </div>
+
+      <!-- 4. Google Gradient Glow Button -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Google Gradient Glow</h4>
+          <span class="badge-tag special">variant="glow"</span>
+        </div>
+        <p class="example-desc">Integrated 4-color Google gradient border with glowing aura on hover.</p>
+        <div class="example-preview center-preview dark-bg">
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="glow"
+            label="Follow on Google Search"
+            theme="dark"
+          />
+        </div>
+        <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
+  url="your-site.com"
+  variant="glow"
+  label="Follow on Google Search"
+  theme="dark"
+/>`}</code></pre>
+      </div>
+
+      <!-- 5. Card-Style Badge -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Vector Badge Card</h4>
+          <span class="badge-tag">variant="badge"</span>
+        </div>
+        <p class="example-desc">Card-style container with scalable vector SVG icon and razor-sharp typography.</p>
+        <div class="example-preview center-preview">
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="badge"
+            label="Add as a preferred source on Google"
+          />
+        </div>
+        <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
+  url="your-site.com"
+  variant="badge"
+  label="Add as a preferred source on Google"
+/>`}</code></pre>
+      </div>
+
+      <!-- 6. Compact Minimal Trigger -->
+      <div class="example-card">
+        <div class="example-header">
+          <h4>Minimal Inline Chip</h4>
+          <span class="badge-tag">variant="minimal"</span>
+        </div>
+        <p class="example-desc">Ultra-compact micro-button for author bylines, header bars, or breadcrumbs.</p>
+        <div class="example-preview center-preview">
+          <GooglePreferredSourceDeeplink
+            url={exampleSite}
+            variant="minimal"
+            size="sm"
+            label="Follow Source"
+          />
+        </div>
+        <pre class="code-block"><code>{`<GooglePreferredSourceDeeplink
+  url="your-site.com"
+  variant="minimal"
+  size="sm"
+  label="Follow Source"
+/>`}</code></pre>
       </div>
     </div>
   </div>
 
-  <!-- TAB 2: STYLED & GLASSMORPHIC -->
-  <div class="tab-pane" id="tab-customized">
+  <!-- TAB 2: CUSTOM LAYOUTS -->
+  <div class="tab-pane" id="tab-layouts">
     <div class="examples-grid">
       <!-- 1. Google 4-Color Gradient Glow Card -->
       <div class="example-card">
         <div class="example-header">
-          <h4>Google Gradient Aura Glow</h4>
+          <h4>Google Gradient Card</h4>
           <span class="badge-tag special">Popular</span>
         </div>
-        <p class="example-desc">Interactive card featuring Google's 4-color gradient aura with smooth hover elevation.</p>
+        <p class="example-desc">Card with radiant Google gradient background and vector pill button.</p>
         <div class="example-preview center-preview aura-stage">
           <div class="google-aura-card">
             <div class="aura-glow" aria-hidden="true"></div>
             <div class="aura-content">
-              <span class="aura-title">Never miss a story</span>
-              <GooglePreferredSourceDeeplink url={exampleSite} lang="en" theme="light" />
+              <span class="aura-title">Never miss a top story</span>
+              <GooglePreferredSourceDeeplink
+                url={exampleSite}
+                variant="pill"
+                label="Follow on Google"
+                theme="light"
+              />
             </div>
           </div>
         </div>
         <pre class="code-block"><code>{`<div class="google-aura-card">
   <div class="aura-glow"></div>
   <div class="aura-content">
-    <span>Never miss a story</span>
-    <GooglePreferredSourceDeeplink url="your-site.com" />
+    <span>Never miss a top story</span>
+    <GooglePreferredSourceDeeplink
+      url="your-site.com"
+      variant="pill"
+      label="Follow on Google"
+    />
   </div>
 </div>`}</code></pre>
       </div>
 
-      <!-- 2. Glassmorphic Reader Toast / Pill -->
+      <!-- 2. Frosted Glass Reader Banner -->
       <div class="example-card">
         <div class="example-header">
           <h4>Frosted Glass Reader Banner</h4>
           <span class="badge-tag special">Glassmorphism</span>
         </div>
-        <p class="example-desc">Backdrop-filtered floating notification banner for article footers.</p>
+        <p class="example-desc">Backdrop-filtered floating notification banner with live reader status.</p>
         <div class="example-preview center-preview mesh-stage">
           <div class="glass-toast">
             <div class="toast-meta">
@@ -140,20 +209,23 @@ const exampleSite = 'magnifito.github.io';
             </div>
             <GooglePreferredSourceDeeplink
               url={exampleSite}
-              lang="en"
-              theme="dark"
-              imageAttrs={{ class: "glass-badge" }}
+              variant="outline"
+              size="sm"
+              label="Add to Google"
+              class="glass-btn"
             />
           </div>
         </div>
         <pre class="code-block"><code>{`<div class="glass-toast">
   <div class="toast-meta">
     <span class="toast-dot"></span>
-    <strong>Enjoying this article?</strong>
+    <strong>Reading on Magnifito?</strong>
   </div>
   <GooglePreferredSourceDeeplink
     url="your-site.com"
-    theme="dark"
+    variant="outline"
+    size="sm"
+    label="Add to Google"
   />
 </div>`}</code></pre>
       </div>
@@ -164,21 +236,31 @@ const exampleSite = 'magnifito.github.io';
           <h4>Editorial Publisher Callout</h4>
           <span class="badge-tag">Editorial</span>
         </div>
-        <p class="example-desc">Refined serif journalism layout with author attribution and preference opt-in.</p>
+        <p class="example-desc">Refined serif journalism layout with author attribution and button trigger.</p>
         <div class="example-preview center-preview">
           <div class="editorial-box">
-            <div class="editorial-quote">"Independent reporting powered by our readership."</div>
+            <div class="editorial-quote">"Independent journalism powered by our readership."</div>
             <div class="editorial-footer">
-              <span class="editorial-byline">Magnifito Editorial Board</span>
-              <GooglePreferredSourceDeeplink url={exampleSite} lang="en" theme="light" />
+              <span class="editorial-byline">MAGNIFITO EDITORIAL</span>
+              <GooglePreferredSourceDeeplink
+                url={exampleSite}
+                variant="pill"
+                size="sm"
+                label="Preferred Source"
+              />
             </div>
           </div>
         </div>
         <pre class="code-block"><code>{`<div class="editorial-box">
-  <p>"Independent reporting powered by readers."</p>
+  <p>"Independent journalism powered by readers."</p>
   <div class="editorial-footer">
-    <span>Editorial Board</span>
-    <GooglePreferredSourceDeeplink url="your-site.com" />
+    <span>MAGNIFITO EDITORIAL</span>
+    <GooglePreferredSourceDeeplink
+      url="your-site.com"
+      variant="pill"
+      size="sm"
+      label="Preferred Source"
+    />
   </div>
 </div>`}</code></pre>
       </div>
@@ -188,7 +270,7 @@ const exampleSite = 'magnifito.github.io';
   <!-- TAB 3: EXOTIC & EXPERIMENTAL -->
   <div class="tab-pane" id="tab-exotic">
     <div class="examples-grid">
-      <!-- 1. Cyberpunk / Retro Terminal HUD -->
+      <!-- 1. Cyberpunk Terminal HUD -->
       <div class="example-card">
         <div class="example-header">
           <h4>Cyberpunk Terminal HUD</h4>
@@ -206,23 +288,22 @@ const exampleSite = 'magnifito.github.io';
               <div class="cyber-code">&gt; LINK_PROTOCOL: ESTABLISHED</div>
               <GooglePreferredSourceDeeplink
                 url={exampleSite}
-                lang="en"
-                theme="dark"
-                class="cyber-deeplink-btn"
-              />
+                variant="raw"
+                class="cyber-custom-trigger"
+              >
+                <GoogleIcon size={18} />
+                <span>INITIATE_PREF_SOURCE &rarr;</span>
+              </GooglePreferredSourceDeeplink>
             </div>
           </div>
         </div>
         <pre class="code-block"><code>{`<div class="cyber-terminal">
-  <div class="cyber-topbar">
-    <span class="cyber-status">ONLINE</span>
-  </div>
   <div class="cyber-body">
     <code>&gt; LINK_PROTOCOL: ACTIVE</code>
-    <GooglePreferredSourceDeeplink
-      url="your-site.com"
-      theme="dark"
-    />
+    <GooglePreferredSourceDeeplink url="your-site.com" variant="raw" class="cyber-btn">
+      <GoogleIcon size={18} />
+      <span>INITIATE_PREF_SOURCE &rarr;</span>
+    </GooglePreferredSourceDeeplink>
   </div>
 </div>`}</code></pre>
       </div>
@@ -240,17 +321,26 @@ const exampleSite = 'magnifito.github.io';
             <div class="holo-inner">
               <div class="holo-badge-header">
                 <span class="holo-star">✦</span>
-                <span class="holo-label">PREFERRED SOURCE</span>
+                <span class="holo-label">GOOGLE SEARCH SIGNAL</span>
               </div>
-              <GooglePreferredSourceDeeplink url={exampleSite} lang="ko" theme="light" />
+              <GooglePreferredSourceDeeplink
+                url={exampleSite}
+                variant="pill"
+                label="선호하는 출처로 등록"
+                theme="light"
+              />
             </div>
           </div>
         </div>
         <pre class="code-block"><code>{`<div class="holo-card">
   <div class="holo-foil"></div>
   <div class="holo-inner">
-    <span>✦ PREFERRED SOURCE</span>
-    <GooglePreferredSourceDeeplink url="your-site.com" lang="ko" />
+    <span>✦ GOOGLE SEARCH SIGNAL</span>
+    <GooglePreferredSourceDeeplink
+      url="your-site.com"
+      variant="pill"
+      label="선호하는 출처로 등록"
+    />
   </div>
 </div>`}</code></pre>
       </div>
@@ -261,13 +351,14 @@ const exampleSite = 'magnifito.github.io';
           <h4>Sticky Floating Reader FAB</h4>
           <span class="badge-tag exotic">Interactive</span>
         </div>
-        <p class="example-desc">Floating action pill for fixed viewports with subtle pulse micro-animation.</p>
+        <p class="example-desc">Floating action pill for fixed viewports with pulse micro-animation.</p>
         <div class="example-preview center-preview">
           <div class="floating-fab-container">
             <div class="fab-pulse" aria-hidden="true"></div>
             <GooglePreferredSourceDeeplink
               url={exampleSite}
-              lang="en"
+              variant="pill"
+              label="Follow on Google"
               theme="dark"
               class="fab-pill"
             />
@@ -277,6 +368,8 @@ const exampleSite = 'magnifito.github.io';
   <div class="fab-pulse"></div>
   <GooglePreferredSourceDeeplink
     url="your-site.com"
+    variant="pill"
+    label="Follow on Google"
     theme="dark"
     class="fab-pill"
   />
@@ -422,7 +515,8 @@ const exampleSite = 'magnifito.github.io';
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.08);
     color: var(--muted);
-    letter-spacing: 0.03em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: 0.01em;
   }
 
   .badge-tag.special {
@@ -445,7 +539,7 @@ const exampleSite = 'magnifito.github.io';
   }
 
   .example-preview {
-    min-height: 120px;
+    min-height: 110px;
     padding: 1.25rem;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.25);
@@ -470,43 +564,6 @@ const exampleSite = 'magnifito.github.io';
     overflow-x: auto;
   }
 
-  /* Custom trigger */
-  .custom-card-trigger {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-  }
-
-  .sparkle {
-    color: #fbbc05;
-    font-size: 1.1rem;
-  }
-
-  /* Text CTA */
-  .inline-text-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #8ab4f8;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    background: rgba(66, 133, 244, 0.1);
-    border: 1px solid rgba(66, 133, 244, 0.25);
-    transition: all 0.2s ease;
-  }
-
-  .inline-text-cta:hover {
-    background: rgba(66, 133, 244, 0.2);
-    transform: translateX(2px);
-  }
-
   /* Google Aura Glow */
   .aura-stage {
     background: #090d16;
@@ -515,7 +572,7 @@ const exampleSite = 'magnifito.github.io';
   .google-aura-card {
     position: relative;
     border-radius: 16px;
-    padding: 1.25rem;
+    padding: 1.25rem 1.5rem;
     background: #151922;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
@@ -560,8 +617,8 @@ const exampleSite = 'magnifito.github.io';
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 0.75rem 1.2rem;
+    gap: 1.25rem;
+    padding: 0.65rem 1.25rem;
     border-radius: 100px;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(16px);
@@ -586,12 +643,22 @@ const exampleSite = 'magnifito.github.io';
     box-shadow: 0 0 8px #34a853;
   }
 
+  :global(.glass-btn) {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    color: #ffffff !important;
+  }
+
+  :global(.glass-btn:hover) {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: #ffffff !important;
+  }
+
   /* Editorial Box */
   .editorial-box {
     width: 100%;
-    padding: 1rem;
-    border-top: 2px solid var(--text);
-    border-bottom: 2px solid var(--text);
+    padding: 1.1rem;
+    border-top: 2px solid #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
     background: #fbfbf9;
     color: #1a1a1a;
     font-family: 'Georgia', serif;
@@ -600,7 +667,7 @@ const exampleSite = 'magnifito.github.io';
   .editorial-quote {
     font-style: italic;
     font-size: 0.92rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
   }
 
   .editorial-footer {
@@ -613,8 +680,8 @@ const exampleSite = 'magnifito.github.io';
   .editorial-byline {
     font-size: 0.75rem;
     font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    color: #555;
   }
 
   /* Cyberpunk Terminal */
@@ -628,7 +695,7 @@ const exampleSite = 'magnifito.github.io';
     border: 1px solid #00ff66;
     box-shadow: 0 0 15px rgba(0, 255, 102, 0.25);
     border-radius: 4px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: ui-monospace, monospace;
     overflow: hidden;
   }
 
@@ -639,7 +706,7 @@ const exampleSite = 'magnifito.github.io';
     align-items: center;
     justify-content: space-between;
     padding: 0.25rem 0.6rem;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 900;
   }
 
@@ -657,10 +724,31 @@ const exampleSite = 'magnifito.github.io';
     text-shadow: 0 0 5px #00ff66;
   }
 
+  .cyber-custom-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    background: rgba(0, 255, 102, 0.1);
+    border: 1px solid #00ff66;
+    color: #00ff66;
+    font-size: 0.78rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+  }
+
+  .cyber-custom-trigger:hover {
+    background: #00ff66;
+    color: #020608;
+    box-shadow: 0 0 10px #00ff66;
+  }
+
   /* 3D Holo Card */
   .holo-card {
     position: relative;
-    padding: 1.25rem;
+    padding: 1.25rem 1.5rem;
     border-radius: 14px;
     background: linear-gradient(135deg, #1e2430 0%, #0e121a 100%);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -724,11 +812,5 @@ const exampleSite = 'magnifito.github.io';
   :global(.fab-pill) {
     position: relative;
     z-index: 1;
-    display: inline-block;
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  :global(.fab-pill:hover) {
-    transform: scale(1.05) translateY(-2px);
   }
 </style>

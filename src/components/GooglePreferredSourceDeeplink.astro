@@ -1,89 +1,343 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import GoogleIcon from './GoogleIcon.astro';
 import GooglePreferredSourceBadge from './GooglePreferredSourceBadge.astro';
-import { getPreferredSourceDeeplinkUrl, type BadgeTheme, type BadgeSize } from '../assets/badges';
+import {
+  getPreferredSourceDeeplinkUrl,
+  getBadgeAlt,
+  type BadgeTheme,
+} from '../assets/badges';
 
 export interface Props extends HTMLAttributes<'a'> {
   /** Publication URL or domain name passed to the Google source preferences tool. */
   url: string;
   /**
-   * Badge theme.
+   * Custom text label for the button.
+   * If not provided and no slot is passed, defaults to the localized Google text for `lang`.
+   */
+  label?: string;
+  /**
+   * Visual style variant of the button:
+   * - `'badge'`: Card-style badge with Google icon and multi-line/clean label
+   * - `'button'`: Solid modern rectangular button with rounded corners
+   * - `'pill'`: Stadium-shaped pill button
+   * - `'outline'`: Ghost outline button with transparent background
+   * - `'glow'`: Interactive button with Google 4-color gradient glow on hover
+   * - `'minimal'`: Compact inline trigger
+   * - `'raw'`: Unstyled anchor tag with slot/text only
+   * - `'image'`: Official static raster badge image
+   * @default 'badge'
+   */
+  variant?: 'badge' | 'button' | 'pill' | 'outline' | 'glow' | 'minimal' | 'raw' | 'image';
+  /**
+   * Button color theme.
    * @default 'light'
    */
-  theme?: BadgeTheme;
+  theme?: BadgeTheme | 'auto';
   /**
-   * Badge language code (e.g. 'en', 'ko', 'ja', 'es', 'de', etc.).
+   * Button size.
+   * @default 'md'
+   */
+  size?: 'sm' | 'md' | 'lg';
+  /**
+   * Whether to display the official Google 4-color 'G' icon.
+   * @default true
+   */
+  icon?: boolean;
+  /**
+   * Language code used for default localized text fallback.
    * @default 'en'
    */
   lang?: string;
   /**
-   * Badge base resolution ('1x' | '2x').
+   * Image resolution when `variant="image"` ('1x' | '2x').
    * @default '1x'
    */
-  size?: BadgeSize;
-  /**
-   * Whether to include high-DPI (2x) srcset.
-   * @default true
-   */
-  highDpi?: boolean;
-  /**
-   * Custom image source override if using a custom badge graphic.
-   */
-  imageSrc?: string;
-  /**
-   * HTML attributes forwarded directly to the inner <img> element.
-   */
-  imageAttrs?: HTMLAttributes<'img'>;
-  /**
-   * Custom alt text override. Defaults to the official localized Google wording for the language.
-   */
-  alt?: string;
-  /**
-   * Whether to automatically render a badge image when no custom slot is provided.
-   * Set to `false` to render a plain accessible text link instead.
-   * @default true
-   */
-  badge?: boolean;
+  imageSize?: '1x' | '2x';
 }
 
 const {
   url,
+  label,
+  variant = 'badge',
   theme = 'light',
+  size = 'md',
+  icon = true,
   lang = 'en',
-  size = '1x',
-  highDpi = true,
-  imageSrc,
-  imageAttrs = {},
-  alt,
-  badge = true,
+  imageSize = '1x',
   target = '_blank',
   rel = 'noopener noreferrer',
+  class: className,
   ...attrs
 } = Astro.props;
 
 const href = getPreferredSourceDeeplinkUrl(url);
+const defaultText = label ?? getBadgeAlt(lang);
 const hasCustomSlot = Astro.slots.has('default');
+
+const iconSizeMap = {
+  sm: 16,
+  md: 20,
+  lg: 24,
+};
+
+const currentIconSize = iconSizeMap[size] ?? 20;
 ---
 
-<a
-  href={href}
-  target={target}
-  rel={rel}
-  {...attrs}
->
-  {hasCustomSlot ? (
-    <slot />
-  ) : badge ? (
-    <GooglePreferredSourceBadge
-      theme={theme}
-      lang={lang}
-      size={size}
-      highDpi={highDpi}
-      src={imageSrc}
-      alt={alt}
-      {...imageAttrs}
-    />
+{
+  variant === 'raw' ? (
+    <a href={href} target={target} rel={rel} class={className} {...attrs}>
+      <slot>{defaultText}</slot>
+    </a>
+  ) : variant === 'image' ? (
+    <a
+      href={href}
+      target={target}
+      rel={rel}
+      class:list={['google-preferred-source-img-link', className]}
+      {...attrs}
+    >
+      <GooglePreferredSourceBadge
+        theme={theme === 'auto' ? 'light' : theme}
+        lang={lang}
+        size={imageSize}
+      />
+    </a>
   ) : (
-    <slot>Add as Preferred Source</slot>
-  )}
-</a>
+    <a
+      href={href}
+      target={target}
+      rel={rel}
+      class:list={[
+        'google-preferred-source-btn',
+        `variant-${variant}`,
+        `theme-${theme}`,
+        `size-${size}`,
+        className,
+      ]}
+      {...attrs}
+    >
+      {variant === 'glow' && <span class="glow-aura" aria-hidden="true" />}
+      <span class="btn-inner">
+        {icon && (
+          <span class="icon-wrapper">
+            <slot name="icon">
+              <GoogleIcon size={currentIconSize} />
+            </slot>
+          </span>
+        )}
+        <span class="text-wrapper">
+          {hasCustomSlot ? <slot /> : <span class="btn-label">{defaultText}</span>}
+        </span>
+      </span>
+    </a>
+  )
+}
+
+<style>
+  .google-preferred-source-img-link {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .google-preferred-source-img-link:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+
+  .google-preferred-source-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.25;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-inner {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    width: 100%;
+  }
+
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .text-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .btn-label {
+    letter-spacing: -0.01em;
+  }
+
+  /* Sizes */
+  .size-sm {
+    font-size: 0.8125rem;
+    padding: 0.45rem 0.8rem;
+  }
+
+  .size-md {
+    font-size: 0.9375rem;
+    padding: 0.6rem 1.1rem;
+  }
+
+  .size-lg {
+    font-size: 1.0625rem;
+    padding: 0.75rem 1.4rem;
+  }
+
+  /* Variants */
+  .variant-badge {
+    border-radius: 12px;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--gps-border, #dadce0);
+    box-shadow: 0 1px 3px rgba(60, 64, 67, 0.08);
+  }
+
+  .variant-badge:hover {
+    box-shadow: 0 2px 8px rgba(60, 64, 67, 0.16);
+    transform: translateY(-1px);
+  }
+
+  .variant-button {
+    border-radius: 8px;
+    border: 1px solid var(--gps-border, transparent);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .variant-button:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }
+
+  .variant-pill {
+    border-radius: 9999px;
+    border: 1px solid var(--gps-border, #dadce0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  .variant-pill:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+  }
+
+  .variant-outline {
+    border-radius: 9999px;
+    background: transparent !important;
+    border: 1.5px solid var(--gps-border, #dadce0);
+  }
+
+  .variant-outline:hover {
+    border-color: #4285f4;
+    background: rgba(66, 133, 244, 0.06) !important;
+    transform: translateY(-1px);
+  }
+
+  .variant-minimal {
+    border-radius: 6px;
+    padding: 0.3rem 0.6rem;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .variant-minimal:hover {
+    background: rgba(128, 128, 128, 0.1) !important;
+  }
+
+  /* Glow Variant */
+  .variant-glow {
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .glow-aura {
+    position: absolute;
+    inset: -2px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
+    opacity: 0.35;
+    filter: blur(6px);
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    z-index: 0;
+  }
+
+  .variant-glow:hover .glow-aura {
+    opacity: 0.85;
+    filter: blur(8px);
+  }
+
+  .variant-glow:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Themes */
+  .theme-light {
+    --gps-border: #dadce0;
+    background-color: #ffffff;
+    color: #3c4043;
+  }
+
+  .theme-light:hover {
+    color: #202124;
+    --gps-border: #bdc1c6;
+  }
+
+  .theme-dark {
+    --gps-border: #3c4043;
+    background-color: #202124;
+    color: #e8eaed;
+  }
+
+  .theme-dark:hover {
+    color: #ffffff;
+    --gps-border: #5f6368;
+    background-color: #303134;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .theme-auto {
+      --gps-border: #3c4043;
+      background-color: #202124;
+      color: #e8eaed;
+    }
+
+    .theme-auto:hover {
+      color: #ffffff;
+      --gps-border: #5f6368;
+      background-color: #303134;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    .theme-auto {
+      --gps-border: #dadce0;
+      background-color: #ffffff;
+      color: #3c4043;
+    }
+
+    .theme-auto:hover {
+      color: #202124;
+      --gps-border: #bdc1c6;
+    }
+  }
+</style>

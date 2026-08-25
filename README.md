@@ -133,77 +133,96 @@ Both client modules expose the same API:
 | `init(options)`     | Initialize the SDK with `theme` and/or `lang`.                             |
 | `addPreferredSource(options?)` | Trigger the preferred-source flow. Calls `init` with defaults if not already initialized; passing options re-initializes first. |
 
-## Deeplink implementation
+## Deeplink & Button components
 
-For environments without JavaScript, newsletters, social posts, or custom UI layouts, use the deeplink and badge components:
+The integration provides modern, vector-powered button components with crisp SVG Google icons, arbitrary custom text labels, and customizable visual styles (pills, badges, outline, glow, etc.):
 
-### Component-based badge deeplink
+### 1. Vector Button with Custom Label
 
 ```astro
 ---
 import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
 ---
 
-<!-- Automatically outputs the official Google badge, retina srcset, and localized alt text -->
+<!-- Modern pill with arbitrary text and vector Google "G" icon -->
 <GooglePreferredSourceDeeplink
   url="example.com"
+  variant="pill"
+  label="Follow on Google"
+  theme="light"
+/>
+```
+
+### 2. Standalone Google "G" Icon
+
+```astro
+---
+import GoogleIcon from '@puralex/astro-google-preferred-source/components/GoogleIcon.astro';
+---
+
+<!-- Crisp scalable 4-color Google "G" SVG -->
+<GoogleIcon size={24} />
+```
+
+### 3. Visual Button Variants
+
+```astro
+<!-- Solid button with dark theme -->
+<GooglePreferredSourceDeeplink
+  url="example.com"
+  variant="button"
+  label="선호하는 출처로 추가"
+  theme="dark"
+/>
+
+<!-- Ghost outline button -->
+<GooglePreferredSourceDeeplink
+  url="example.com"
+  variant="outline"
+  label="Add as Preferred Source"
+/>
+
+<!-- Google 4-color gradient glow button -->
+<GooglePreferredSourceDeeplink
+  url="example.com"
+  variant="glow"
+  label="Follow on Google Search"
+  theme="dark"
+/>
+
+<!-- Custom slot content -->
+<GooglePreferredSourceDeeplink url="example.com" variant="pill">
+  <span>⭐ Add to Google Preferences</span>
+</GooglePreferredSourceDeeplink>
+```
+
+### 4. Official Static Graphic Badges
+
+If you want the official Google pre-rendered PNG graphics:
+
+```astro
+<GooglePreferredSourceDeeplink
+  url="example.com"
+  variant="image"
   lang="ko"
   theme="light"
 />
 ```
 
-The component renders a link to `https://www.google.com/preferences/source?q=<url>` with `target="_blank"` and `rel="noopener noreferrer"`.
+### `GooglePreferredSourceDeeplink` Props
 
-### Standalone badge component
+| Prop        | Type                                                                       | Description                                                                              |
+| ----------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `url`       | `string`                                                                   | Publication URL or domain name. Required.                                                |
+| `label`     | `string`                                                                   | Custom text label for the button. Supports any arbitrary text.                           |
+| `variant`   | `'badge' \| 'button' \| 'pill' \| 'outline' \| 'glow' \| 'minimal' \| 'raw' \| 'image'` | Visual button style. Defaults to `'badge'`.                                 |
+| `theme`     | `'light' \| 'dark' \| 'auto'`                                              | Color theme. Defaults to `'light'`.                                                      |
+| `size`      | `'sm' \| 'md' \| 'lg'`                                                     | Button size. Defaults to `'md'`.                                                         |
+| `icon`      | `boolean`                                                                  | Whether to display the official 4-color Google "G" SVG icon. Defaults to `true`.          |
+| `lang`      | `string`                                                                   | Language code for default localized text fallback if `label` is omitted. Defaults to `'en'`. |
+| `imageSize` | `'1x' \| '2x'`                                                             | Resolution when `variant="image"`. Defaults to `'1x'`.                                   |
 
-If you need the official badge image inside your own custom button, dialog, or card:
-
-```astro
----
-import GooglePreferredSourceBadge from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceBadge.astro';
----
-
-<div class="custom-card">
-  <GooglePreferredSourceBadge lang="ja" theme="dark" />
-</div>
-```
-
-### Custom slot or text link
-
-```astro
-<GooglePreferredSourceDeeplink url="example.com">
-  Follow our news on Google Search &rarr;
-</GooglePreferredSourceDeeplink>
-```
-
-### Deeplink Props (`GooglePreferredSourceDeeplink`)
-
-| Prop         | Type                  | Description                                                                          |
-| ------------ | --------------------- | ------------------------------------------------------------------------------------ |
-| `url`        | `string`              | Publication URL or domain name. Required.                                            |
-| `theme`      | `'light' \| 'dark'`  | Badge theme. Defaults to `'light'`.                                                  |
-| `lang`       | `string`              | Badge language code (`'en'`, `'ko'`, `'ja'`, etc.). Defaults to `'en'`.              |
-| `size`       | `'1x' \| '2x'`        | Base badge resolution. Defaults to `'1x'`.                                           |
-| `highDpi`    | `boolean`             | Output 2x `srcset` for high-DPI displays. Defaults to `true`.                         |
-| `alt`        | `string`              | Custom alt text override. Defaults to official localized Google wording for `lang`.  |
-| `imageSrc`   | `string`              | Custom image URL override if using a custom badge graphic.                           |
-| `imageAttrs` | `HTMLAttributes<'img'>` | HTML attributes forwarded directly to the inner `<img>` element.                   |
-| `badge`      | `boolean`             | Render badge image when no custom slot is provided. Defaults to `true`.              |
-
-All standard `<a>` HTML attributes are also accepted on `GooglePreferredSourceDeeplink`.
-
-### Badge Props (`GooglePreferredSourceBadge`)
-
-| Prop      | Type                 | Description                                                                          |
-| --------- | -------------------- | ------------------------------------------------------------------------------------ |
-| `theme`   | `'light' \| 'dark'` | Badge theme. Defaults to `'light'`.                                                  |
-| `lang`    | `string`             | Badge language code (`'en'`, `'ko'`, `'ja'`, etc.). Defaults to `'en'`.              |
-| `size`    | `'1x' \| '2x'`       | Base badge resolution. Defaults to `'1x'`.                                           |
-| `highDpi` | `boolean`            | Output 2x `srcset` for high-DPI displays. Defaults to `true`.                         |
-| `alt`     | `string`             | Custom alt text override. Defaults to official localized Google wording for `lang`.  |
-| `src`     | `string`             | Custom image source override.                                                        |
-
-All standard `<img>` HTML attributes are also accepted on `GooglePreferredSourceBadge`.
+All standard `<a>` HTML attributes are also accepted.
 
 ## Integration Options
 

@@ -20,7 +20,8 @@
     },
     "./components/GooglePreferredSourceButton.astro": "./src/components/GooglePreferredSourceButton.astro",
     "./components/GooglePreferredSourceDeeplink.astro": "./src/components/GooglePreferredSourceDeeplink.astro",
-    "./components/GooglePreferredSourceBadge.astro": "./src/components/GooglePreferredSourceBadge.astro"
+    "./components/GooglePreferredSourceBadge.astro": "./src/components/GooglePreferredSourceBadge.astro",
+    "./components/GoogleIcon.astro": "./src/components/GoogleIcon.astro"
   },
   "files": [
     "dist",
