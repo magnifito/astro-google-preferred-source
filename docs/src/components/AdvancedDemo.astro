@@ -1,22 +1,16 @@
 ---
 ---
 
-<div class="demo">
-  <button class="button" id="advanced-trigger" type="button">
-    Add as preferred source (custom button)
-  </button>
-  <p class="note">
-    This button only works when the integration is set to <code>mode: 'advanced'</code>.
-    The standard mode used on this page loads the auto-render script, so the advanced
-    callback queue is not available here.
-  </p>
-</div>
+<p>
+  To use a custom trigger, set <code>mode: 'advanced'</code> in your Astro config and call
+  <code>addPreferredSource()</code> from your own UI.
+</p>
 
 <pre><code>{`---
 // Use mode: 'advanced' in astro.config.mjs
 ---
 
-<button id="advanced-trigger">Add as preferred source</button>
+<button id="preferred-source-btn">Add as preferred source</button>
 
 <script>
   import { init, addPreferredSource } from '@puralex/astro-google-preferred-source/client';
@@ -24,6 +18,6 @@
   init({ theme: 'dark', lang: 'en' });
 
   document
-    .getElementById('advanced-trigger')
+    .getElementById('preferred-source-btn')
     ?.addEventListener('click', () => addPreferredSource());
 </script>`}</code></pre>

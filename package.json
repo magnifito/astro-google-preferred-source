@@ -14,6 +14,10 @@
       "types": "./dist/client.d.ts",
       "default": "./dist/client.js"
     },
+    "./client/esm": {
+      "types": "./dist/client-esm.d.ts",
+      "default": "./dist/client-esm.js"
+    },
     "./components/GooglePreferredSourceButton.astro": "./src/components/GooglePreferredSourceButton.astro",
     "./components/GooglePreferredSourceDeeplink.astro": "./src/components/GooglePreferredSourceDeeplink.astro"
   },

@@ -18,6 +18,17 @@ import AdvancedDemo from '../components/AdvancedDemo.astro';
   </header>
 
   <section class="card">
+    <h2>Eligibility</h2>
+    <p>
+      Only domain-level and subdomain-level sites can be preferred sources.
+      Subdirectories like <code>example.com/blog</code> are not eligible.
+      Check your site in the
+      <a href="https://www.google.com/preferences/source">source preferences tool</a>
+      before implementing.
+    </p>
+  </section>
+
+  <section class="card">
     <h2>Installation</h2>
     <pre><code>npm install @puralex/astro-google-preferred-source</code></pre>
   </section>
@@ -41,6 +52,10 @@ import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/
     <div class="demo">
       <GooglePreferredSourceButton theme="dark" lang="en" />
     </div>
+    <p class="note">
+      Place the button where readers will see it: header, article end, or footer.
+      Pair it with a short CTA and mention it in newsletters or social posts.
+    </p>
   </section>
 
   <section class="card">
@@ -63,6 +78,25 @@ import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-sourc
         Add as preferred source
       </GooglePreferredSourceDeeplink>
     </div>
+    <p>
+      You can also use an image inside the deeplink. Google provides
+      <a href="https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip">official translated button assets</a>
+      you can download and host yourself.
+    </p>
+    <pre><code>{`<GooglePreferredSourceDeeplink url="magnifito.github.io">
+  <img src="/path/to/button.png" alt="Add as preferred source" />
+</GooglePreferredSourceDeeplink>`}</code></pre>
+  </section>
+
+  <section class="card">
+    <h2>Resources</h2>
+    <ul>
+      <li><a href="https://www.google.com/preferences/source">Source preferences tool</a> — check site eligibility</li>
+      <li><a href="https://developers.google.com/search/docs/appearance/preferred-sources">Google preferred sources docs</a></li>
+      <li><a href="https://developers.google.com/static/search/docs/appearance/preferred-sources-languages.csv">Supported language codes</a></li>
+      <li><a href="https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip">Official button assets</a></li>
+      <li><a href="https://reader-revenue-demo.ue.r.appspot.com/preferred-sources/esm">Google interactive demo</a></li>
+    </ul>
   </section>
 
   <footer>

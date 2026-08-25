@@ -14,6 +14,10 @@ Supports Astro `^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0`.
 
 See the live showcase at [magnifito.github.io/astro-google-preferred-source](https://magnifito.github.io/astro-google-preferred-source/).
 
+## Eligibility
+
+Only domain-level and subdomain-level sites can appear as preferred sources. Subdirectories like `example.com/blog` are not eligible. Check your site in the [source preferences tool](https://www.google.com/preferences/source) before implementing.
+
 ## Usage
 
 Add the integration to your Astro config:
@@ -38,7 +42,7 @@ import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/
 <GooglePreferredSourceButton theme="dark" lang="en" />
 ```
 
-## Component Props
+### Component Props
 
 | Prop   | Type                  | Description                                                              |
 | ------ | --------------------- | ------------------------------------------------------------------------ |
@@ -47,9 +51,17 @@ import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/
 
 All standard `<div>` HTML attributes are also accepted.
 
+### Placement tips
+
+- Put the button where readers will see it: near the homepage header, at the end of articles, or in the site footer.
+- Pair it with a short CTA label so readers understand what clicking does.
+- Mention it in newsletters and social posts to lift adoption among loyal readers.
+
 ## Advanced JavaScript implementation
 
-Use your own UI and trigger the flow programmatically:
+Use your own UI and trigger the flow programmatically. Two client modules are available:
+
+### Callback queue (IIFE)
 
 ```js
 // astro.config.mjs
@@ -83,7 +95,29 @@ export default defineConfig({
 </script>
 ```
 
+### ES Module import
+
+```astro
+---
+// MyCustomButton.astro
+---
+
+<button id="preferred-source-btn">Add as preferred source</button>
+
+<script>
+  import { init, addPreferredSource } from '@puralex/astro-google-preferred-source/client/esm';
+
+  init({ theme: 'dark', lang: 'en' });
+
+  document
+    .getElementById('preferred-source-btn')
+    ?.addEventListener('click', () => addPreferredSource());
+</script>
+```
+
 ### Client API
+
+Both client modules expose the same API:
 
 | Function            | Description                                                                |
 | ------------------- | -------------------------------------------------------------------------- |
@@ -106,6 +140,16 @@ import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-sourc
 
 The component renders a link to `https://www.google.com/preferences/source?q=<url>` with `target="_blank"` and `rel="noopener noreferrer"`.
 
+### Deeplink with an image
+
+```astro
+<GooglePreferredSourceDeeplink url="example.com">
+  <img src="/path/to/button.png" alt="Add as preferred source" />
+</GooglePreferredSourceDeeplink>
+```
+
+Google provides [official translated button assets](https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip) you can download and host yourself.
+
 ### Deeplink Props
 
 | Prop  | Type     | Description                                                              |
@@ -120,3 +164,16 @@ All standard `<a>` HTML attributes are also accepted.
 | -------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | `mode`         | `'standard' \| 'advanced'`    | `'standard'` injects the auto-render button script (default). `'advanced'` injects the manual-control script.   |
 | `injectScript` | `boolean`                      | Inject the Google Preferred Sources library script into every page's `<head>`. Defaults to `true`. Set to `false` if you add the script manually. |
+
+## Resources
+
+- [Source preferences tool](https://www.google.com/preferences/source) — check if your site is eligible.
+- [Google preferred sources documentation](https://developers.google.com/search/docs/appearance/preferred-sources)
+- [Supported language codes](https://developers.google.com/static/search/docs/appearance/preferred-sources-languages.csv)
+- [Official button assets](https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip)
+- [Google interactive demo](https://reader-revenue-demo.ue.r.appspot.com/preferred-sources/esm)
+
+## Limitations
+
+- **CSP:** The integration injects an inline `<script>` to load Google's library. Sites with a strict Content Security Policy must allow inline scripts (`unsafe-inline`) or load the library manually with `injectScript: false`.
+- **Mixed modes:** The standard auto-render script and the advanced manual-control script should not be loaded together. The callback-queue client module rejects if a standard-mode script is already present.
