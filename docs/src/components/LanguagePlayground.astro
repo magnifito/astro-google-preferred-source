@@ -22,7 +22,11 @@ import { languages } from '../data/languages';
     </label>
   </div>
   <div class="preview">
-    <iframe id="playground-frame" title="Preferred source button preview" loading="lazy"></iframe>
+    <iframe
+      id="playground-frame"
+      title="Preferred source button preview"
+      data-base={import.meta.env.BASE_URL}
+    ></iframe>
   </div>
   <p class="note">
     The button text is localized by Google. Selecting a language sets <code>data-lang</code>;
@@ -84,16 +88,9 @@ import { languages } from '../data/languages';
     if (!frame) return;
     const lang = langSelect?.value || '';
     const theme = themeSelect?.value || 'light';
-    const langAttr = lang ? ` data-lang="${lang}"` : '';
-    frame.style.colorScheme = theme;
-    frame.srcdoc = [
-      '<!doctype html><html><head>',
-      '<style>html,body{margin:0;height:100%}body{display:flex;align-items:center;justify-content:center;background:transparent}</style>',
-      '</head><body>',
-      `<div google-add-preferred-source-btn data-theme="${theme}"${langAttr}></div>`,
-      '<script async src="https://news.google.com/swg/js/v1/publisher.js"><\/script>',
-      '</body></html>',
-    ].join('');
+    const params = new URLSearchParams({ theme });
+    if (lang) params.set('lang', lang);
+    frame.src = `${frame.dataset.base}playground/frame/?${params}`;
   }
 
   langSelect?.addEventListener('change', render);

@@ -1,0 +1,43 @@
+---
+// Standalone preview frame for the language playground.
+// Reads ?lang= &theme= from the query string, sets the button attributes,
+// then injects Google's script so it scans the page with them in place.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Preferred source button preview</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="btn" google-add-preferred-source-btn></div>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const theme = params.get('theme') === 'dark' ? 'dark' : 'light';
+      const lang = params.get('lang') || '';
+      const btn = document.getElementById('btn');
+      btn.setAttribute('data-theme', theme);
+      if (lang) btn.setAttribute('data-lang', lang);
+      document.documentElement.style.colorScheme = theme;
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://news.google.com/swg/js/v1/publisher.js';
+      document.head.appendChild(s);
+    </script>
+  </body>
+</html>
