@@ -37,35 +37,46 @@ import { languages } from '../data/languages';
 
 <style>
   .playground {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
     gap: 1rem;
+    align-items: stretch;
   }
   .controls {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 0.9rem;
+    align-content: start;
   }
   .controls label {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.4rem;
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
   }
   .controls select {
-    background: var(--card);
-    color: var(--fg);
-    border: 1px solid var(--muted);
+    width: 100%;
+    min-height: 2.85rem;
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--line-strong);
     border-radius: 6px;
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 0.55rem 0.7rem;
+    font-size: 0.96rem;
+    font-weight: 700;
   }
   .preview {
-    padding: 2rem;
-    border: 1px dashed var(--muted);
+    min-width: 0;
+    min-height: 9rem;
+    padding: 1.25rem;
+    background:
+      linear-gradient(90deg, rgba(18, 129, 58, 0.08), transparent 45%),
+      #f8fafc;
+    border: 1px dashed var(--line-strong);
     border-radius: 8px;
-    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,9 +84,18 @@ import { languages } from '../data/languages';
   .preview iframe {
     border: 0;
     width: 100%;
-    height: 60px;
+    height: 72px;
     background: transparent;
     color-scheme: normal;
+  }
+  .note {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+  @media (max-width: 760px) {
+    .playground {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
@@ -89,8 +109,10 @@ import { languages } from '../data/languages';
     const lang = langSelect?.value || '';
     const theme = themeSelect?.value || 'light';
     const params = new URLSearchParams({ theme });
+    const rawBase = frame.dataset.base || '/';
+    const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
     if (lang) params.set('lang', lang);
-    frame.src = `${frame.dataset.base}playground/frame/?${params}`;
+    frame.src = `${base}playground/frame/?${params}`;
   }
 
   langSelect?.addEventListener('change', render);

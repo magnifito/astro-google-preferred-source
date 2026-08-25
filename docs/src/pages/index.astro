@@ -6,9 +6,12 @@ import AdvancedDemo from '../components/AdvancedDemo.astro';
 import LanguagePlayground from '../components/LanguagePlayground.astro';
 import AssetsGallery from '../components/AssetsGallery.astro';
 import CopyBox from '../components/CopyBox.astro';
-import { languages } from '../data/languages';
+import { getAssetPath, languages } from '../data/languages';
 
 const installCmd = 'npx astro add @puralex/astro-google-preferred-source';
+const english = languages.find((lang) => lang.code === 'en') ?? languages[0];
+const lightBadge = getAssetPath(english, 'light');
+const darkBadge = getAssetPath(english, 'dark');
 
 const llmPrompt = `Set up Google preferred sources in this Astro project using the @puralex/astro-google-preferred-source integration:
 
@@ -20,217 +23,382 @@ const llmPrompt = `Set up Google preferred sources in this Astro project using t
 Docs: https://magnifito.github.io/astro-google-preferred-source/`;
 ---
 
-<Layout>
-  <div class="hero">
-    <p class="eyebrow">For Astro sites</p>
-    <h1>Turn Google readers into <span class="grad">loyal followers</span></h1>
-    <p class="subtitle">
-      Google's preferred sources feature lets readers choose <em>your</em> site and see more of
-      your coverage in Top Stories. This integration puts that button on your site in minutes.
-    </p>
-    <CopyBox code={installCmd} label="Copy" />
-    <div class="demo">
-      <GooglePreferredSourceButton theme="light" lang="en" />
-    </div>
-    <div class="badges">
-      <span>Astro 4, 5, 6 &amp; 7</span>
-      <span>&middot;</span>
-      <span>{languages.length} languages</span>
-      <span>&middot;</span>
-      <span>TypeScript + full test coverage</span>
-    </div>
-  </div>
+<Layout title="Astro Google Preferred Source">
+  <header class="site-nav" id="top">
+    <a class="brand" href="#top" aria-label="Astro Google Preferred Source home">
+      <span class="brand-mark" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <span>astro-google-preferred-source</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#why">Why</a>
+      <a href="#install">Install</a>
+      <a href="#playground">Playground</a>
+      <a href="#reference">Reference</a>
+      <a class="nav-cta" href="https://github.com/magnifito/astro-google-preferred-source">GitHub</a>
+    </nav>
+  </header>
 
-  <section>
-    <p class="eyebrow">Why it matters</p>
-    <h2>Stop competing for attention on every query</h2>
-    <p class="lead">
-      When a reader marks you as a preferred source, Google shows them more of your content —
-      in Top Stories and in a dedicated "From your sources" section. One click turns a casual
-      visitor into a recurring audience.
-    </p>
-    <div class="grid">
-      <div class="feature">
-        <span class="stat">2&times;</span>
-        <h3>More clicks</h3>
-        <p>
-          Google reports that readers click through to a site twice as much on average once they
-          pick it as a preferred source.
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">For Astro publishers</p>
+        <h1 id="hero-title">Become the source Google remembers.</h1>
+        <p class="subtitle">
+          Add Google's preferred sources button to an Astro site with one integration. Give readers
+          a clear way to choose your publication, then show up more often when they search.
         </p>
+        <div class="hero-actions">
+          <CopyBox code={installCmd} label="Copy" />
+          <a class="secondary-action" href="#playground">Try it live</a>
+        </div>
+        <dl class="hero-metrics" aria-label="Package highlights">
+          <div>
+            <dt>Astro</dt>
+            <dd>4 through 7</dd>
+          </div>
+          <div>
+            <dt>Locales</dt>
+            <dd>{languages.length} supported</dd>
+          </div>
+          <div>
+            <dt>Setup</dt>
+            <dd>1 command</dd>
+          </div>
+        </dl>
       </div>
-      <div class="feature">
-        <span class="stat">&#9733;</span>
-        <h3>Top Stories visibility</h3>
-        <p>
-          Preferred sources get boosted placement in Top Stories and their own section on the
-          results page.
-        </p>
-      </div>
-      <div class="feature">
-        <span class="stat">&#9825;</span>
-        <h3>Durable loyalty</h3>
-        <p>
-          A reader's choice sticks. Every future search is a chance for your coverage to surface
-          first.
-        </p>
-      </div>
-      <div class="feature">
-        <span class="stat">1</span>
-        <h3>Component to add it</h3>
-        <p>
-          One Astro integration handles script injection, theming, and localization. No manual
-          script tags.
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <section>
-    <p class="eyebrow">How it works</p>
-    <h2>Live on your site in three steps</h2>
-    <div class="step-grid">
-      <div class="step">
-        <span class="step-num">1</span>
-        <h3>Install</h3>
-        <p>One command adds the integration and registers it in your Astro config.</p>
-        <pre><code>npx astro add @puralex/astro-google-preferred-source</code></pre>
+      <div class="hero-visual">
+        <div class="source-card">
+          <div class="card-kicker">Preferred source signal</div>
+          <div class="source-lockup">
+            <div>
+              <h2>A small button with recurring reach.</h2>
+              <p>
+                Use Google's native flow, or deeplink with the official translated badge assets.
+              </p>
+            </div>
+            <div class="badge-stack" aria-label="Official badge examples">
+              <img src={lightBadge} alt="Google preferred source light badge" />
+              <img src={darkBadge} alt="Google preferred source dark badge" />
+            </div>
+          </div>
+          <div class="search-sheet" aria-label="Illustrated Google Search preview">
+            <div class="search-bar"><span class="lens" aria-hidden="true"></span> latest local election results</div>
+            <div class="result-stack">
+              <div class="result-row preferred">
+                <strong>From your sources: Magnifito News</strong>
+                <span>Reader preference turns into visible placement in future searches.</span>
+              </div>
+              <div class="result-row">
+                <strong>Top Stories</strong>
+                <span>The sites readers choose can appear more often for them.</span>
+              </div>
+            </div>
+          </div>
+          <div class="live-button-stage">
+            <GooglePreferredSourceButton theme="light" lang="en" />
+          </div>
+        </div>
       </div>
-      <div class="step">
-        <span class="step-num">2</span>
-        <h3>Drop in the button</h3>
-        <p>Render the component in your layout, article footer, or anywhere readers will see it.</p>
-        <pre><code>{`<GooglePreferredSourceButton
-  theme="light" lang="en" />`}</code></pre>
-      </div>
-      <div class="step">
-        <span class="step-num">3</span>
-        <h3>Readers opt in</h3>
-        <p>
-          Visitors tap the button, confirm in their Google preferences, and start seeing more of
-          you.
+    </section>
+
+    <section id="why">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Why it matters</p>
+          <h2>Search traffic is easier to keep when readers choose you.</h2>
+        </div>
+        <p class="lead">
+          Preferred sources turn a passing visit into an audience signal. The integration keeps the
+          implementation small while the call to action stays visible and trustworthy.
         </p>
-        <pre><code>// nothing else to do</code></pre>
       </div>
-    </div>
-    <p class="note">
-      Works with Astro 4, 5, 6 and 7. Check eligibility first — only domain-level and
-      subdomain-level sites can be preferred sources. Subdirectories
-      like{' '}<code>example.com/blog</code> are not eligible. Check yours in
-      the{' '}<a href="https://www.google.com/preferences/source">source preferences tool</a>.
-    </p>
-  </section>
+      <div class="feature-grid">
+        <div class="feature">
+          <span class="stat">2&times;</span>
+          <h3>More clicks</h3>
+          <p>
+            Google reports that readers click through to a site twice as much on average once they
+            pick it as a preferred source.
+          </p>
+        </div>
+        <div class="feature">
+          <span class="stat">Top</span>
+          <h3>Stories visibility</h3>
+          <p>
+            Preferred sources can get boosted placement in Top Stories and a dedicated results
+            section.
+          </p>
+        </div>
+        <div class="feature">
+          <span class="stat">Long</span>
+          <h3>Durable loyalty</h3>
+          <p>
+            A reader's choice persists, so every future search is another chance to surface first.
+          </p>
+        </div>
+        <div class="feature">
+          <span class="stat">One</span>
+          <h3>Component</h3>
+          <p>
+            Script injection, theming, localization, and client APIs stay inside the Astro package.
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <p class="eyebrow">Try it live</p>
-    <h2>Language &amp; theme playground</h2>
-    <p class="lead">
-      Google localizes the button into {languages.length} languages. Pick one and see it render.
-    </p>
-    <div class="card">
-      <LanguagePlayground />
-    </div>
-  </section>
+    <section id="install">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2>Live on your site in three deliberate steps.</h2>
+        </div>
+        <p class="lead">
+          Use the standard button by default. Move to the advanced client API only when your product
+          needs a custom trigger.
+        </p>
+      </div>
+      <div class="step-grid">
+        <div class="step">
+          <span class="step-num">1</span>
+          <h3>Install</h3>
+          <p>One command adds the integration and registers it in your Astro config.</p>
+          <pre><code>npx astro add @puralex/astro-google-preferred-source</code></pre>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <h3>Render the button</h3>
+          <p>Place it in a layout, article footer, or reader-facing membership area.</p>
+          <pre><code>{`<GooglePreferredSourceButton
+  theme="light"
+  lang="en"
+/>`}</code></pre>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <h3>Let readers opt in</h3>
+          <p>Visitors confirm in their Google preferences and start seeing more of your work.</p>
+          <pre><code>// no manual script tags</code></pre>
+        </div>
+      </div>
+      <p class="note">
+        Check eligibility first: only domain-level and subdomain-level sites can be preferred
+        sources. Subdirectories like <code>example.com/blog</code> are not eligible. Test your site
+        in the <a href="https://www.google.com/preferences/source">source preferences tool</a>.
+      </p>
+    </section>
 
-  <section class="card">
-    <h2>Standard button</h2>
-    <p>
-      Add the integration to <code>astro.config.mjs</code> and drop in the component.
-      The button only renders for sites that appear in Google's source preferences tool.
-    </p>
-    <pre><code>{`// astro.config.mjs
+    <section id="playground">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Try it live</p>
+          <h2>Language and theme playground.</h2>
+        </div>
+        <p class="lead">
+          Google localizes the native button into {languages.length} languages. Pick a locale,
+          switch themes, and inspect the rendered result.
+        </p>
+      </div>
+      <div class="tool-panel">
+        <LanguagePlayground />
+      </div>
+    </section>
+
+    <section id="reference">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Reference</p>
+          <h2>Standard mode, advanced mode, and deeplinks.</h2>
+        </div>
+        <p class="lead">
+          The common path is intentionally short. The rest is here for custom product surfaces,
+          no-JavaScript links, and official asset embedding.
+        </p>
+      </div>
+
+      <div class="docs-grid">
+        <div class="docs-copy">
+          <h2>Standard button</h2>
+          <p>
+            Add the integration to <code>astro.config.mjs</code>, then render the component anywhere
+            readers will see it.
+          </p>
+          <p class="note">
+            The button only renders for sites that appear in Google's source preferences tool.
+          </p>
+        </div>
+        <div class="code-stack">
+          <pre><code>{`// astro.config.mjs
 import googlePreferredSource from '@puralex/astro-google-preferred-source';
 
 export default defineConfig({
   integrations: [googlePreferredSource()],
 });`}</code></pre>
-    <pre><code>{`---
+          <pre><code>{`---
 import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceButton.astro';
 ---
+
 <GooglePreferredSourceButton theme="light" lang="en" />`}</code></pre>
-    <div class="demo">
-      <GooglePreferredSourceButton theme="light" lang="en" />
-    </div>
-    <p class="note">
-      Place the button where readers will see it: header, article end, or footer.
-      Pair it with a short CTA and mention it in newsletters or social posts.
-    </p>
-  </section>
+          <div class="demo">
+            <GooglePreferredSourceButton theme="light" lang="en" />
+          </div>
+        </div>
+      </div>
 
-  <section class="card">
-    <h2>Advanced custom trigger</h2>
-    <p>Use your own button design and trigger the flow programmatically.</p>
-    <AdvancedDemo />
-  </section>
+      <div class="docs-grid">
+        <div class="docs-copy">
+          <h2>Advanced custom trigger</h2>
+          <p>
+            Use this when your interface needs its own button design, placement, or product copy.
+          </p>
+        </div>
+        <div class="code-stack">
+          <AdvancedDemo />
+        </div>
+      </div>
 
-  <section class="card">
-    <h2>Deeplink</h2>
-    <p>For no-JS environments, newsletters, or social posts.</p>
-    <pre><code>{`---
+      <div class="docs-grid">
+        <div class="docs-copy">
+          <h2>Deeplink</h2>
+          <p>
+            Use for no-JavaScript contexts, newsletters, social posts, or badge images hosted by
+            your site.
+          </p>
+          <p>
+            Google provides
+            <a href="https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip">
+              official translated button assets
+            </a>
+            you can download and host yourself.
+          </p>
+        </div>
+        <div class="code-stack">
+          <pre><code>{`---
 import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
 ---
+
 <GooglePreferredSourceDeeplink url="magnifito.github.io">
   Add as preferred source
 </GooglePreferredSourceDeeplink>`}</code></pre>
-    <div class="demo">
-      <GooglePreferredSourceDeeplink url="magnifito.github.io">
-        Add as preferred source
-      </GooglePreferredSourceDeeplink>
-    </div>
-    <p>
-      You can also use an image inside the deeplink. Google
-      provides{' '}<a href="https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip">official translated button assets</a>
-      you can download and host yourself.
-    </p>
-    <pre><code>{`<GooglePreferredSourceDeeplink url="magnifito.github.io">
+          <div class="demo">
+            <GooglePreferredSourceDeeplink url="magnifito.github.io">
+              Add as preferred source
+            </GooglePreferredSourceDeeplink>
+          </div>
+          <pre><code>{`<GooglePreferredSourceDeeplink url="magnifito.github.io">
   <img src="/path/to/button.png" alt="Add as preferred source" />
 </GooglePreferredSourceDeeplink>`}</code></pre>
-  </section>
+        </div>
+      </div>
+    </section>
 
-  <section class="card">
-    <h2>Official assets gallery</h2>
-    <p>
-      All official translated badges in light and dark variants. Click "Embed code" to copy.
-    </p>
-    <AssetsGallery />
-  </section>
+    <section id="assets">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Official assets</p>
+          <h2>Translated badges ready to embed.</h2>
+        </div>
+        <p class="lead">
+          Light and dark variants are included for every official asset language. Open a card to
+          copy the matching deeplink markup.
+        </p>
+      </div>
+      <AssetsGallery />
+    </section>
 
-  <section class="card">
-    <h2>Let your LLM do it</h2>
-    <p>
-      Using an AI coding assistant? Copy this prompt and paste it into your agent — it will
-      install the integration and wire up the button for you.
-    </p>
-    <CopyBox code={llmPrompt} label="Copy prompt" />
-  </section>
+    <section>
+      <div class="docs-grid">
+        <div class="docs-copy">
+          <h2>Let your LLM do it</h2>
+          <p>
+            Using an AI coding assistant? Copy this prompt and paste it into your agent. It will
+            install the integration and wire up the button.
+          </p>
+        </div>
+        <div class="code-stack">
+          <CopyBox code={llmPrompt} label="Copy prompt" />
+        </div>
+      </div>
+    </section>
 
-  <section class="cta-band">
-    <h2>Ready to become a <span class="grad">preferred source</span>?</h2>
-    <p>
-      One command, one component, and your readers can follow you straight from Google Search.
-    </p>
-    <CopyBox code={installCmd} label="Copy" />
-    <div class="cta-links">
-      <a href="https://github.com/magnifito/astro-google-preferred-source">Star on GitHub</a>
-      <a href="https://www.npmjs.com/package/@puralex/astro-google-preferred-source">View on npm</a>
-    </div>
-  </section>
+    <section class="cta-band">
+      <div>
+        <h2>Give loyal readers a direct signal.</h2>
+        <p>
+          One command, one Astro component, and your publication can ask to become a preferred
+          source at the moment readers are paying attention.
+        </p>
+      </div>
+      <div>
+        <CopyBox code={installCmd} label="Copy" />
+        <div class="cta-links">
+          <a href="https://github.com/magnifito/astro-google-preferred-source">Star on GitHub</a>
+          <a href="https://www.npmjs.com/package/@puralex/astro-google-preferred-source">View on npm</a>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Resources</h2>
-    <ul>
-      <li><a href="https://www.google.com/preferences/source">Source preferences tool</a> — check site eligibility</li>
-      <li><a href="https://developers.google.com/search/docs/appearance/preferred-sources">Google preferred sources docs</a></li>
-      <li><a href="https://blog.google/products/search/preferred-sources/">Google announcement: preferred sources</a></li>
-      <li><a href="https://developers.google.com/static/search/docs/appearance/preferred-sources-languages.csv">Supported language codes</a></li>
-      <li><a href="https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip">Official button assets</a></li>
-      <li><a href="https://reader-revenue-demo.ue.r.appspot.com/preferred-sources/esm">Google interactive demo</a></li>
-    </ul>
-  </section>
+    <section>
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Resources</p>
+          <h2>Useful links for rollout.</h2>
+        </div>
+        <p class="lead">
+          Check eligibility, read Google's implementation notes, and verify supported languages
+          before launching.
+        </p>
+      </div>
+      <ul class="resource-list">
+        <li>
+          <a href="https://www.google.com/preferences/source">
+            Source preferences tool
+            <span>Check site eligibility.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://developers.google.com/search/docs/appearance/preferred-sources">
+            Google preferred sources docs
+            <span>Read implementation guidance.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://blog.google/products/search/preferred-sources/">
+            Google announcement
+            <span>Understand the product launch.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://developers.google.com/static/search/docs/appearance/preferred-sources-languages.csv">
+            Supported language codes
+            <span>Map locales to button rendering.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip">
+            Official button assets
+            <span>Download translated badges.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://reader-revenue-demo.ue.r.appspot.com/preferred-sources/esm">
+            Google interactive demo
+            <span>Inspect the native flow.</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
 
   <footer>
+    <span>@puralex/astro-google-preferred-source</span>
     <p>
       <a href="https://github.com/magnifito/astro-google-preferred-source">GitHub</a>
-      &middot;
       <a href="https://www.npmjs.com/package/@puralex/astro-google-preferred-source">npm</a>
     </p>
   </footer>

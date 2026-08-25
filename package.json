@@ -26,7 +26,9 @@
     "src/components"
   ],
   "scripts": {
-    "build": "tsc",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "npm run clean && tsc",
+    "docs:build": "npm run build && npm --prefix docs run build",
     "test": "node --test --experimental-test-coverage --test-coverage-exclude=src/**/*.test.ts src/*.test.ts",
     "prepublishOnly": "npm run build && npm test"
   },
@@ -44,6 +46,11 @@
   "homepage": "https://magnifito.github.io/astro-google-preferred-source/",
   "bugs": "https://github.com/magnifito/astro-google-preferred-source/issues",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "sideEffects": false,
   "peerDependencies": {
     "astro": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0"
   },

@@ -3,6 +3,13 @@ name: Deploy docs to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'docs/**'
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+      - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
 
 permissions:
@@ -26,19 +33,19 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            docs/package-lock.json
 
-      - name: Install and build plugin
-        run: |
-          npm ci
-          npm run build
+      - name: Install dependencies
+        run: npm ci
 
       - name: Install docs dependencies
         working-directory: docs
         run: npm ci
 
       - name: Build docs
-        working-directory: docs
-        run: npm run build
+        run: npm run docs:build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

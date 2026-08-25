@@ -14,11 +14,13 @@ const { code, label = 'Copy' } = Astro.props;
 <style>
   .copybox {
     position: relative;
+    min-width: 0;
     margin: 0.5rem 0;
   }
   .copybox pre {
     margin: 0;
-    padding-right: 5.5rem;
+    min-height: 3.25rem;
+    padding-right: 5.8rem;
     white-space: pre-wrap;
     word-break: break-word;
   }
@@ -26,16 +28,25 @@ const { code, label = 'Copy' } = Astro.props;
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 0.35rem 0.75rem;
+    min-height: 2.15rem;
+    background: #ffffff;
+    color: var(--ink);
+    border: 1px solid #c8d0d9;
+    padding: 0.35rem 0.7rem;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 800;
   }
   .copy-btn:hover {
-    filter: brightness(1.15);
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18);
+  }
+  @media (max-width: 520px) {
+    .copybox pre {
+      padding-top: 3rem;
+      padding-right: 1rem;
+    }
   }
 </style>
 
