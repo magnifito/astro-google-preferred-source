@@ -8,106 +8,201 @@ const exampleSite = 'magnifito.github.io';
   <div class="placement-cards">
     <!-- 1. Article End (Highest Conversion) -->
     <div class="placement-card featured">
-      <div class="card-top">
+      <div class="card-header-bar">
         <div class="placement-badge highest">🔥 Highest Conversion</div>
         <h3>1. End of Article / Post</h3>
         <p class="placement-why">
-          <strong>Why it works:</strong> Peak intent. When a reader finishes an entire article, their trust and satisfaction with your reporting are at their absolute highest.
+          <strong>Why it works:</strong> Peak intent. When a reader reaches the end of your story, their trust and satisfaction with your reporting are at their absolute highest.
         </p>
       </div>
-      <div class="mini-ui-frame">
-        <div class="article-end-mockup">
-          <div class="mockup-text-lines">
-            <div class="mock-line full"></div>
-            <div class="mock-line three-quarter"></div>
+
+      <!-- VISUAL PAGE GRAPHIC: Full Article Page Layout -->
+      <div class="browser-graphic-frame">
+        <div class="browser-header">
+          <div class="window-controls">
+            <span></span><span></span><span></span>
           </div>
-          <div class="mockup-cta-box">
-            <span class="cta-heading">Never miss our next investigation</span>
-            <GooglePreferredSourceDeeplink
-              url={exampleSite}
-              variant="pill"
-              label="Follow on Google Search"
-              theme="dark"
-            />
+          <div class="browser-address">your-site.com/articles/state-of-search</div>
+        </div>
+        <div class="page-wireframe article-page-wireframe">
+          <div class="wf-navbar">
+            <div class="wf-logo"></div>
+            <div class="wf-nav-items"><div></div><div></div><div></div></div>
+          </div>
+          <div class="wf-article-body">
+            <div class="wf-article-title"></div>
+            <div class="wf-article-sub"></div>
+            <div class="wf-hero-img"></div>
+            <div class="wf-text-block">
+              <div class="wf-line full"></div>
+              <div class="wf-line full"></div>
+              <div class="wf-line three-quarter"></div>
+            </div>
+            
+            <!-- HIGHLIGHTED PLACEMENT TARGET -->
+            <div class="wf-target-zone highlight-article-end">
+              <div class="target-indicator">
+                <span class="target-pin">📍</span>
+                <span class="target-label">OPTIMAL PLACEMENT ZONE (100% READ)</span>
+              </div>
+              <div class="target-content">
+                <span class="target-cta-text">Enjoyed this investigation?</span>
+                <GooglePreferredSourceDeeplink
+                  url={exampleSite}
+                  variant="pill"
+                  label="Follow on Google Search"
+                  theme="dark"
+                />
+              </div>
+            </div>
+
+            <div class="wf-post-meta">
+              <div class="wf-author-chip"></div>
+              <div class="wf-share-icons"></div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="placement-code">
-        <pre><code>{`<aside class="article-footer-cta">
-  <p>Never miss our next story</p>
-  <GooglePreferredSourceDeeplink
-    url="your-site.com"
-    variant="pill"
-    label="Follow on Google Search"
-  />
-</aside>`}</code></pre>
+        <pre><code>{`<article class="story">
+  <h1>Your Article Title</h1>
+  <p>Article content...</p>
+  
+  <!-- Place right at the conclusion before comments/related stories -->
+  <aside class="story-footer-optin">
+    <h3>Never miss our next story</h3>
+    <GooglePreferredSourceDeeplink
+      url="your-site.com"
+      variant="pill"
+      label="Follow on Google Search"
+    />
+  </aside>
+</article>`}</code></pre>
       </div>
     </div>
 
     <!-- 2. Header Navbar (Maximum Visibility) -->
     <div class="placement-card">
-      <div class="card-top">
+      <div class="card-header-bar">
         <div class="placement-badge">👁️ Maximum Visibility</div>
         <h3>2. Header / Top Navigation</h3>
         <p class="placement-why">
-          <strong>Why it works:</strong> Zero-scroll presence. Appears instantly on every page view next to RSS feeds, theme toggles, and search bars.
+          <strong>Why it works:</strong> Zero-scroll presence. Visible on every page visit without scrolling, right alongside search, theme toggles, and social icons.
         </p>
       </div>
-      <div class="mini-ui-frame">
-        <div class="header-nav-mockup">
-          <div class="mock-logo">MAGNIFITO</div>
-          <div class="mock-nav-items">
-            <span>News</span>
-            <span>Tech</span>
-            <GooglePreferredSourceDeeplink
-              url={exampleSite}
-              variant="outline"
-              size="sm"
-              label="Follow"
-            />
+
+      <!-- VISUAL PAGE GRAPHIC: Header Layout -->
+      <div class="browser-graphic-frame">
+        <div class="browser-header">
+          <div class="window-controls">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="browser-address">your-site.com</div>
+        </div>
+        <div class="page-wireframe header-page-wireframe">
+          <div class="wf-navbar highlighted-navbar">
+            <div class="wf-logo text-logo">MAGNIFITO</div>
+            <div class="wf-nav-items">
+              <span class="wf-link">News</span>
+              <span class="wf-link">Opinion</span>
+              <span class="wf-link">Tech</span>
+            </div>
+            <!-- HIGHLIGHTED PLACEMENT TARGET -->
+            <div class="wf-target-zone highlight-header-action">
+              <div class="target-indicator small">
+                <span class="target-pin">📍</span>
+                <span class="target-label">NAV ACTION</span>
+              </div>
+              <GooglePreferredSourceDeeplink
+                url={exampleSite}
+                variant="outline"
+                size="sm"
+                label="Follow"
+              />
+            </div>
+          </div>
+          <div class="wf-hero-area">
+            <div class="wf-hero-headline"></div>
+            <div class="wf-hero-grid">
+              <div class="wf-grid-card"></div>
+              <div class="wf-grid-card"></div>
+              <div class="wf-grid-card"></div>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="placement-code">
-        <pre><code>{`<nav class="site-nav">
+        <pre><code>{`<header class="site-header">
   <Logo />
-  <div class="nav-links">
+  <nav class="nav-links">
+    <a href="/news">News</a>
     <GooglePreferredSourceDeeplink
       url="your-site.com"
       variant="outline"
       size="sm"
       label="Follow"
     />
-  </div>
-</nav>`}</code></pre>
+  </nav>
+</header>`}</code></pre>
       </div>
     </div>
 
     <!-- 3. Floating Reader Toast (High Engagement) -->
     <div class="placement-card">
-      <div class="card-top">
+      <div class="card-header-bar">
         <div class="placement-badge">⚡ High Engagement</div>
-        <h3>3. Floating Reader Banner</h3>
+        <h3>3. Scroll-Triggered Floating Pill</h3>
         <p class="placement-why">
-          <strong>Why it works:</strong> Catches actively engaged readers as they scroll midway through long-form stories without blocking content.
+          <strong>Why it works:</strong> Catches actively engaged readers as they scroll past 50% of an article, offering an unobtrusive floating reminder.
         </p>
       </div>
-      <div class="mini-ui-frame glass-stage">
-        <div class="floating-pill-mockup">
-          <span class="live-pulse"></span>
-          <span class="pill-text">Reading on Magnifito?</span>
-          <GooglePreferredSourceDeeplink
-            url={exampleSite}
-            variant="pill"
-            size="sm"
-            label="Add to Google"
-            theme="dark"
-          />
+
+      <!-- VISUAL PAGE GRAPHIC: Floating Banner on Scroll -->
+      <div class="browser-graphic-frame">
+        <div class="browser-header">
+          <div class="window-controls">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="browser-address">your-site.com/deep-dive (60% scrolled)</div>
+        </div>
+        <div class="page-wireframe floating-page-wireframe">
+          <div class="wf-scroll-progress-bar"></div>
+          <div class="wf-blurred-article">
+            <div class="wf-line full"></div>
+            <div class="wf-line full"></div>
+            <div class="wf-line half"></div>
+            <div class="wf-line full"></div>
+            <div class="wf-line three-quarter"></div>
+          </div>
+          
+          <!-- HIGHLIGHTED PLACEMENT TARGET -->
+          <div class="wf-target-zone highlight-floating-pill">
+            <div class="target-indicator small">
+              <span class="target-pin">📍</span>
+              <span class="target-label">FLOATING DOCK (50%+ SCROLL)</span>
+            </div>
+            <div class="glass-floating-pill">
+              <span class="pulse-dot"></span>
+              <span class="dock-text">Enjoying this story?</span>
+              <GooglePreferredSourceDeeplink
+                url={exampleSite}
+                variant="pill"
+                size="sm"
+                label="Add to Google"
+                theme="dark"
+              />
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="placement-code">
-        <pre><code>{`<div class="floating-reader-pill">
-  <span>Enjoying this guide?</span>
+        <pre><code>{`<!-- Sticky bottom dock or scroll-triggered toast -->
+<div class="floating-reader-dock">
+  <span class="indicator">🟢</span>
+  <span>Enjoying this story?</span>
   <GooglePreferredSourceDeeplink
     url="your-site.com"
     variant="pill"
@@ -120,32 +215,61 @@ const exampleSite = 'magnifito.github.io';
 
     <!-- 4. Author Bio & Editorial Byline (Personal Trust) -->
     <div class="placement-card">
-      <div class="card-top">
+      <div class="card-header-bar">
         <div class="placement-badge">✍️ Personal Trust</div>
-        <h3>4. Author Bio / Editorial Box</h3>
+        <h3>4. Author Bio / Columnist Card</h3>
         <p class="placement-why">
-          <strong>Why it works:</strong> Connects author credibility directly with publication loyalty for opinion pieces, columns, and specialist beats.
+          <strong>Why it works:</strong> Connects author credibility directly with publication loyalty for opinion columns, newsletters, and beat reporting.
         </p>
       </div>
-      <div class="mini-ui-frame">
-        <div class="author-box-mockup">
-          <div class="author-avatar">AK</div>
-          <div class="author-details">
-            <span class="author-name">Alex Kirov</span>
-            <span class="author-role">Senior Technology Reporter</span>
+
+      <!-- VISUAL PAGE GRAPHIC: Author Column Layout -->
+      <div class="browser-graphic-frame">
+        <div class="browser-header">
+          <div class="window-controls">
+            <span></span><span></span><span></span>
           </div>
-          <GooglePreferredSourceDeeplink
-            url={exampleSite}
-            variant="minimal"
-            size="sm"
-            label="Follow Publication"
-          />
+          <div class="browser-address">your-site.com/opinion/alex-kirov</div>
+        </div>
+        <div class="page-wireframe author-page-wireframe">
+          <div class="wf-column-kicker">OPINION & ANALYSIS</div>
+          <div class="wf-column-title">The Future of Preferred Web Discovery</div>
+          
+          <!-- HIGHLIGHTED PLACEMENT TARGET -->
+          <div class="wf-target-zone highlight-author-box">
+            <div class="target-indicator small">
+              <span class="target-pin">📍</span>
+              <span class="target-label">AUTHOR TRUST LOCKUP</span>
+            </div>
+            <div class="author-box-content">
+              <div class="author-avatar-badge">AK</div>
+              <div class="author-info">
+                <span class="author-name">Alex Kirov</span>
+                <span class="author-title">Senior Tech Columnist</span>
+              </div>
+              <GooglePreferredSourceDeeplink
+                url={exampleSite}
+                variant="minimal"
+                size="sm"
+                label="Follow Publication"
+              />
+            </div>
+          </div>
+
+          <div class="wf-text-block">
+            <div class="wf-line full"></div>
+            <div class="wf-line three-quarter"></div>
+          </div>
         </div>
       </div>
+
       <div class="placement-code">
-        <pre><code>{`<div class="author-bio">
-  <Avatar />
-  <BioText />
+        <pre><code>{`<div class="author-card">
+  <img src={author.avatar} alt={author.name} />
+  <div>
+    <h4>{author.name}</h4>
+    <p>{author.bio}</p>
+  </div>
   <GooglePreferredSourceDeeplink
     url="your-site.com"
     variant="minimal"
@@ -158,34 +282,65 @@ const exampleSite = 'magnifito.github.io';
 
     <!-- 5. Email Newsletters & Social Bios (Off-Site Reach) -->
     <div class="placement-card">
-      <div class="card-top">
+      <div class="card-header-bar">
         <div class="placement-badge">📬 Off-Site Reach</div>
-        <h3>5. Newsletters & Social Links</h3>
+        <h3>5. Email Newsletters & Social Bios</h3>
         <p class="placement-why">
-          <strong>Why it works:</strong> Email clients block JS scripts. The deeplink generates a direct Google preferences URL that opens 1-click preference confirmation.
+          <strong>Why it works:</strong> Email clients block JavaScript. The deeplink generates a direct URL that triggers Google preference confirmation in 1 click.
         </p>
       </div>
-      <div class="mini-ui-frame">
-        <div class="newsletter-mockup">
-          <span class="newsletter-title">WEEKLY DIGEST FOOTER</span>
-          <p class="newsletter-sub">"Prefer getting updates on Google Search?"</p>
-          <GooglePreferredSourceDeeplink
-            url={exampleSite}
-            variant="button"
-            size="sm"
-            label="Add us as a preferred source &rarr;"
-            theme="light"
-          />
+
+      <!-- VISUAL PAGE GRAPHIC: Email Newsletter Client -->
+      <div class="browser-graphic-frame">
+        <div class="browser-header email-header">
+          <div class="window-controls">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="browser-address">📬 Mail Client — Weekly Digest #42</div>
+        </div>
+        <div class="page-wireframe newsletter-page-wireframe">
+          <div class="email-meta-bar">
+            <div class="email-avatar">M</div>
+            <div class="email-headers">
+              <span class="email-from"><strong>Magnifito News</strong> &lt;newsletter@magnifito.com&gt;</span>
+              <span class="email-subject">This Week in Web Development & AI</span>
+            </div>
+          </div>
+          <div class="email-body-preview">
+            <div class="wf-line full"></div>
+            <div class="wf-line three-quarter"></div>
+          </div>
+
+          <!-- HIGHLIGHTED PLACEMENT TARGET -->
+          <div class="wf-target-zone highlight-newsletter-footer">
+            <div class="target-indicator small">
+              <span class="target-pin">📍</span>
+              <span class="target-label">NO-JS DEEPLINK FOOTER</span>
+            </div>
+            <div class="newsletter-footer-box">
+              <p class="newsletter-cta">Prefer getting stories directly on Google Search?</p>
+              <GooglePreferredSourceDeeplink
+                url={exampleSite}
+                variant="button"
+                size="sm"
+                label="Add as a Preferred Source &rarr;"
+                theme="light"
+              />
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="placement-code">
-        <pre><code>{`<!-- In email newsletters or link-in-bio -->
-<p>
-  See our stories first:
-  <GooglePreferredSourceDeeplink url="your-site.com">
-    Add us on Google Search
-  </GooglePreferredSourceDeeplink>
-</p>`}</code></pre>
+        <pre><code>{`<!-- Inside email templates or Linktree/social bio -->
+<div class="email-footer">
+  <p>Read our stories first in Google Search:</p>
+  <GooglePreferredSourceDeeplink
+    url="your-site.com"
+    variant="button"
+    label="Add us as a Preferred Source &rarr;"
+  />
+</div>`}</code></pre>
       </div>
     </div>
   </div>
@@ -193,11 +348,11 @@ const exampleSite = 'magnifito.github.io';
   <div class="placement-tips-banner">
     <div class="tips-icon">💡</div>
     <div class="tips-content">
-      <h4>Optimization Best Practices</h4>
+      <h4>Publisher Placement Rule of Thumb</h4>
       <ul>
-        <li><strong>Pair with a short benefit CTA:</strong> Tell readers what happens (e.g. <em>"See our stories first in Google Search & Top Stories"</em>).</li>
-        <li><strong>Maintain clean visual balance:</strong> Stick to 1 prominent callout at the end of articles, plus a compact button in the header or footer.</li>
-        <li><strong>Use vector variants:</strong> Stadium pills (`variant="pill"`) and outline badges (`variant="outline"`) seamlessly adapt to light and dark themes.</li>
+        <li><strong>Rule of 2:</strong> Use <strong>1 primary callout</strong> at the end of articles (where intent is 100%), and <strong>1 compact touchpoint</strong> in the header or footer.</li>
+        <li><strong>Always clarify the benefit:</strong> Use copy like <em>"See our reporting first on Google Search & Top Stories"</em> rather than generic labels.</li>
+        <li><strong>Adaptive vector styles:</strong> Stadium pills (`variant="pill"`) and outline buttons (`variant="outline"`) fit seamlessly into both light and dark themes without jarring image boxes.</li>
       </ul>
     </div>
   </div>
@@ -214,7 +369,7 @@ const exampleSite = 'magnifito.github.io';
   .placement-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 
   .placement-card {
@@ -235,10 +390,10 @@ const exampleSite = 'magnifito.github.io';
 
   .placement-card.featured {
     border-color: rgba(66, 133, 244, 0.35);
-    box-shadow: 0 4px 20px rgba(66, 133, 244, 0.08);
+    box-shadow: 0 6px 24px rgba(66, 133, 244, 0.1);
   }
 
-  .card-top {
+  .card-header-bar {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -277,136 +432,325 @@ const exampleSite = 'magnifito.github.io';
     color: var(--text);
   }
 
-  .mini-ui-frame {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px dashed var(--border);
+  /* BROWSER / PAGE GRAPHIC WIREFRAME */
+  .browser-graphic-frame {
+    background: #0d1117;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    padding: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 130px;
-  }
-
-  .mini-ui-frame.glass-stage {
-    background: radial-gradient(circle at top left, #1a237e 0%, #0d1117 80%);
-  }
-
-  /* Mockup 1: Article End */
-  .article-end-mockup {
-    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
   }
 
-  .mockup-text-lines {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .mock-line {
-    height: 6px;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, 0.12);
-  }
-
-  .mock-line.full { width: 100%; }
-  .mock-line.three-quarter { width: 75%; }
-
-  .mockup-cta-box {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    text-align: center;
-  }
-
-  .cta-heading {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  /* Mockup 2: Header Nav */
-  .header-nav-mockup {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.6rem 0.85rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .mock-logo {
-    font-weight: 900;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    color: var(--text);
-  }
-
-  .mock-nav-items {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  /* Mockup 3: Floating Pill */
-  .floating-pill-mockup {
+  .browser-header {
+    background: #161b22;
+    padding: 0.45rem 0.75rem;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 100px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .live-pulse {
+  .window-controls {
+    display: flex;
+    gap: 5px;
+  }
+
+  .window-controls span {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #34a853;
-    box-shadow: 0 0 8px #34a853;
+    background: rgba(255, 255, 255, 0.2);
   }
 
-  .pill-text {
-    font-size: 0.82rem;
+  .browser-address {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .page-wireframe {
+    padding: 1rem;
+    position: relative;
+    background: #090d14;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: 200px;
+  }
+
+  /* Wireframe Atoms */
+  .wf-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .wf-logo {
+    width: 60px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 3px;
+  }
+
+  .wf-logo.text-logo {
+    width: auto;
+    height: auto;
+    font-weight: 900;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    background: transparent;
+  }
+
+  .wf-nav-items {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .wf-nav-items div {
+    width: 28px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+
+  .wf-link {
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .wf-article-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .wf-article-title {
+    width: 80%;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+
+  .wf-article-sub {
+    width: 50%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+  }
+
+  .wf-hero-img {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(66, 133, 244, 0.15), rgba(52, 168, 83, 0.15));
+    border-radius: 6px;
+  }
+
+  .wf-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .wf-line {
+    height: 5px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .wf-line.full { width: 100%; }
+  .wf-line.three-quarter { width: 75%; }
+  .wf-line.half { width: 50%; }
+
+  .wf-post-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+  }
+
+  .wf-author-chip {
+    width: 40px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+  }
+
+  /* TARGET CALLOUT ZONES */
+  .wf-target-zone {
+    position: relative;
+    border-radius: 10px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    border: 1.5px dashed #4285f4;
+    background: rgba(66, 133, 244, 0.06);
+    box-shadow: 0 0 16px rgba(66, 133, 244, 0.15);
+    animation: targetGlow 3s infinite alternate ease-in-out;
+  }
+
+  @keyframes targetGlow {
+    0% { border-color: rgba(66, 133, 244, 0.5); box-shadow: 0 0 8px rgba(66, 133, 244, 0.1); }
+    100% { border-color: rgba(66, 133, 244, 1); box-shadow: 0 0 20px rgba(66, 133, 244, 0.25); }
+  }
+
+  .target-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #8ab4f8;
+    letter-spacing: 0.04em;
+    background: rgba(66, 133, 244, 0.18);
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+  }
+
+  .target-indicator.small {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .target-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  .target-cta-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #e8eaed;
+  }
+
+  /* Header Layout */
+  .highlight-header-action {
+    padding: 0.25rem 0.4rem;
+    flex-direction: row;
+    gap: 0.4rem;
+  }
+
+  .wf-hero-area {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .wf-hero-headline {
+    width: 60%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+  }
+
+  .wf-hero-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+  }
+
+  .wf-grid-card {
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+
+  /* Floating Layout */
+  .floating-page-wireframe {
+    justify-content: space-between;
+    min-height: 180px;
+  }
+
+  .wf-scroll-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: #34a853;
+  }
+
+  .wf-blurred-article {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    opacity: 0.35;
+  }
+
+  .highlight-floating-pill {
+    align-self: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-floating-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34a853;
+    box-shadow: 0 0 6px #34a853;
+  }
+
+  .dock-text {
+    font-size: 0.78rem;
     color: #ffffff;
     font-weight: 600;
   }
 
-  /* Mockup 4: Author Box */
-  .author-box-mockup {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    padding: 0.75rem 1rem;
+  /* Author Box Layout */
+  .wf-column-kicker {
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: #8ab4f8;
   }
 
-  .author-avatar {
-    width: 34px;
-    height: 34px;
+  .wf-column-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text);
+    font-family: 'Georgia', serif;
+  }
+
+  .author-box-content {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+  }
+
+  .author-avatar-badge {
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #4285f4, #34a853);
+    background: linear-gradient(135deg, #4285f4, #ea4335);
     color: white;
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 900;
     display: flex;
     align-items: center;
@@ -414,43 +758,81 @@ const exampleSite = 'magnifito.github.io';
     flex-shrink: 0;
   }
 
-  .author-details {
+  .author-info {
     display: flex;
     flex-direction: column;
     flex: 1;
   }
 
   .author-name {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     font-weight: 700;
     color: var(--text);
   }
 
-  .author-role {
-    font-size: 0.72rem;
+  .author-title {
+    font-size: 0.65rem;
     color: var(--muted);
   }
 
-  /* Mockup 5: Newsletter */
-  .newsletter-mockup {
-    width: 100%;
-    text-align: center;
+  /* Newsletter Layout */
+  .email-header {
+    background: #1e2430;
+  }
+
+  .email-meta-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .email-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: #34a853;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .email-headers {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .email-from {
+    font-size: 0.68rem;
+    color: var(--text);
+  }
+
+  .email-subject {
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+
+  .email-body-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .newsletter-footer-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
+    text-align: center;
   }
 
-  .newsletter-title {
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-  }
-
-  .newsletter-sub {
-    margin: 0 0 0.4rem;
-    font-size: 0.8rem;
+  .newsletter-cta {
+    margin: 0;
+    font-size: 0.72rem;
     font-style: italic;
     color: var(--text);
   }
