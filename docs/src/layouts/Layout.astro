@@ -1,0 +1,93 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = '@puralex/astro-google-preferred-source' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Astro plugin for the Google Search preferred sources button." />
+    <title>{title}</title>
+    <style is:global>
+      :root {
+        --bg: #0f172a;
+        --fg: #f8fafc;
+        --muted: #94a3b8;
+        --accent: #3b82f6;
+        --card: #1e293b;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+      }
+      a { color: var(--accent); }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+      header {
+        border-bottom: 1px solid var(--card);
+        margin-bottom: 3rem;
+      }
+      h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
+      .subtitle { color: var(--muted); font-size: 1.25rem; }
+      .card {
+        background: var(--card);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+      }
+      .card h2 { margin-top: 0; }
+      pre {
+        background: #020617;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.9rem;
+      }
+      .demo {
+        padding: 1.5rem;
+        border: 1px dashed var(--muted);
+        border-radius: 8px;
+        margin-top: 1rem;
+      }
+      .button {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .note {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-top: 0.75rem;
+      }
+      footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--card);
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <slot />
+    </div>
+  </body>
+</html>

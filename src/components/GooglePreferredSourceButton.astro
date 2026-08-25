@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'div'> {
+  /**
+   * Button theme.
+   * @default 'light'
+   */
+  theme?: 'light' | 'dark';
+  /**
+   * Override the button language. Defaults to the user's browser language.
+   */
+  lang?: string;
+}
+
+const { theme, lang, ...attrs } = Astro.props;
+---
+
+<div
+  google-add-preferred-source-btn
+  data-theme={theme}
+  data-lang={lang}
+  {...attrs}
+></div>

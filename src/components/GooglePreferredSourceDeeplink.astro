@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'a'> {
+  /** Publication URL or domain name passed to the Google source preferences tool. */
+  url: string;
+}
+
+const { url, ...attrs } = Astro.props;
+const href = `https://www.google.com/preferences/source?q=${encodeURIComponent(url)}`;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  {...attrs}
+>
+  <slot>Add as Preferred Source</slot>
+</a>

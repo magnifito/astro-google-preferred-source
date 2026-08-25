@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceButton.astro';
+import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
+import AdvancedDemo from '../components/AdvancedDemo.astro';
+---
+
+<Layout>
+  <header>
+    <h1>@puralex/astro-google-preferred-source</h1>
+    <p class="subtitle">
+      Astro plugin for the
+      <a href="https://developers.google.com/search/docs/appearance/preferred-sources">
+        Google Search preferred sources
+      </a>
+      button.
+    </p>
+  </header>
+
+  <section class="card">
+    <h2>Installation</h2>
+    <pre><code>npm install @puralex/astro-google-preferred-source</code></pre>
+  </section>
+
+  <section class="card">
+    <h2>Standard button</h2>
+    <p>
+      Add the integration to <code>astro.config.mjs</code> and drop in the component.
+      The button only renders for sites that appear in Google's source preferences tool.
+    </p>
+    <pre><code>{`// astro.config.mjs
+import googlePreferredSource from '@puralex/astro-google-preferred-source';
+
+export default defineConfig({
+  integrations: [googlePreferredSource()],
+});`}</code></pre>
+    <pre><code>{`---
+import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceButton.astro';
+---
+<GooglePreferredSourceButton theme="dark" lang="en" />`}</code></pre>
+    <div class="demo">
+      <GooglePreferredSourceButton theme="dark" lang="en" />
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Advanced custom trigger</h2>
+    <p>Use your own button design and trigger the flow programmatically.</p>
+    <AdvancedDemo />
+  </section>
+
+  <section class="card">
+    <h2>Deeplink</h2>
+    <p>For no-JS environments, newsletters, or social posts.</p>
+    <pre><code>{`---
+import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
+---
+<GooglePreferredSourceDeeplink url="magnifito.github.io">
+  Add as preferred source
+</GooglePreferredSourceDeeplink>`}</code></pre>
+    <div class="demo">
+      <GooglePreferredSourceDeeplink url="magnifito.github.io">
+        Add as preferred source
+      </GooglePreferredSourceDeeplink>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      <a href="https://github.com/magnifito/astro-google-preferred-source">GitHub</a>
+      &middot;
+      <a href="https://www.npmjs.com/package/@puralex/astro-google-preferred-source">npm</a>
+    </p>
+  </footer>
+</Layout>
