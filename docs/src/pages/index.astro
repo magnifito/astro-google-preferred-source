@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceButton.astro';
 import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceDeeplink.astro';
 import AdvancedDemo from '../components/AdvancedDemo.astro';
+import LanguagePlayground from '../components/LanguagePlayground.astro';
+import AssetsGallery from '../components/AssetsGallery.astro';
+import { languages } from '../data/languages';
 ---
 
 <Layout>
@@ -30,6 +33,8 @@ import AdvancedDemo from '../components/AdvancedDemo.astro';
 
   <section class="card">
     <h2>Installation</h2>
+    <pre><code>npx astro add @puralex/astro-google-preferred-source</code></pre>
+    <p>or manually:</p>
     <pre><code>npm install @puralex/astro-google-preferred-source</code></pre>
   </section>
 
@@ -56,6 +61,15 @@ import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/
       Place the button where readers will see it: header, article end, or footer.
       Pair it with a short CTA and mention it in newsletters or social posts.
     </p>
+  </section>
+
+  <section class="card">
+    <h2>Language & theme playground</h2>
+    <p>
+      Google supports {languages.length} languages. Pick one to see how the standard button
+      localizes.
+    </p>
+    <LanguagePlayground />
   </section>
 
   <section class="card">
@@ -86,6 +100,14 @@ import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-sourc
     <pre><code>{`<GooglePreferredSourceDeeplink url="magnifito.github.io">
   <img src="/path/to/button.png" alt="Add as preferred source" />
 </GooglePreferredSourceDeeplink>`}</code></pre>
+  </section>
+
+  <section class="card">
+    <h2>Official assets gallery</h2>
+    <p>
+      All official translated badges in light and dark variants. Click "Embed code" to copy.
+    </p>
+    <AssetsGallery />
   </section>
 
   <section class="card">

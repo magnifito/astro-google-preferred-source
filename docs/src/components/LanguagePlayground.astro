@@ -1,0 +1,102 @@
+---
+import { languages } from '../data/languages';
+---
+
+<div class="playground">
+  <div class="controls">
+    <label>
+      Language
+      <select id="playground-lang">
+        <option value="">Browser default</option>
+        {languages.map((lang) => (
+          <option value={lang.code}>{lang.name}</option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Theme
+      <select id="playground-theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>
+  </div>
+  <div class="preview">
+    <iframe id="playground-frame" title="Preferred source button preview" loading="lazy"></iframe>
+  </div>
+  <p class="note">
+    The button text is localized by Google. Selecting a language sets <code>data-lang</code>;
+    theme sets <code>data-theme</code>. Google's script scans the page once at load, so the
+    preview re-renders inside an isolated frame on every change.
+  </p>
+</div>
+
+<style>
+  .playground {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .controls select {
+    background: var(--card);
+    color: var(--fg);
+    border: 1px solid var(--muted);
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  .preview {
+    padding: 2rem;
+    border: 1px dashed var(--muted);
+    border-radius: 8px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .preview iframe {
+    border: 0;
+    width: 100%;
+    height: 60px;
+    background: transparent;
+    color-scheme: normal;
+  }
+</style>
+
+<script>
+  const frame = document.getElementById('playground-frame') as HTMLIFrameElement | null;
+  const langSelect = document.getElementById('playground-lang') as HTMLSelectElement | null;
+  const themeSelect = document.getElementById('playground-theme') as HTMLSelectElement | null;
+
+  function render() {
+    if (!frame) return;
+    const lang = langSelect?.value || '';
+    const theme = themeSelect?.value || 'light';
+    const langAttr = lang ? ` data-lang="${lang}"` : '';
+    frame.style.colorScheme = theme;
+    frame.srcdoc = [
+      '<!doctype html><html><head>',
+      '<style>html,body{margin:0;height:100%}body{display:flex;align-items:center;justify-content:center;background:transparent}</style>',
+      '</head><body>',
+      `<div google-add-preferred-source-btn data-theme="${theme}"${langAttr}></div>`,
+      '<script async src="https://news.google.com/swg/js/v1/publisher.js"><\/script>',
+      '</body></html>',
+    ].join('');
+  }
+
+  langSelect?.addEventListener('change', render);
+  themeSelect?.addEventListener('change', render);
+  render();
+</script>

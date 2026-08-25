@@ -12,6 +12,7 @@ const MODULE_URL = 'https://news.google.com/swg/js/v1/publisher.mjs';
 
 let apiPromise: Promise<PreferredSourceAPI> | null = null;
 let initialized = false;
+let moduleLoader: () => Promise<any> = () => import(MODULE_URL);
 
 function assertBrowser(): void {
   if (typeof window === 'undefined') {
@@ -23,7 +24,7 @@ export function loadPreferredSource(): Promise<PreferredSourceAPI> {
   assertBrowser();
   if (apiPromise) return apiPromise;
 
-  apiPromise = import(/* @vite-ignore */ MODULE_URL)
+  apiPromise = moduleLoader()
     .then((module: any) => module.preferredSource as PreferredSourceAPI);
 
   return apiPromise;
@@ -43,4 +44,14 @@ export async function addPreferredSource(options?: PreferredSourceOptions): Prom
     api.init(options);
   }
   api.addPreferredSource();
+}
+
+export function __setModuleLoader(loader: () => Promise<any>): void {
+  moduleLoader = loader;
+}
+
+export function __reset(): void {
+  apiPromise = null;
+  initialized = false;
+  moduleLoader = () => import(MODULE_URL);
 }

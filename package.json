@@ -27,7 +27,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "test": "node --test --experimental-test-coverage --test-coverage-exclude=src/**/*.test.ts src/*.test.ts",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "astro",
@@ -36,10 +37,18 @@
     "preferred-sources",
     "search"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magnifito/astro-google-preferred-source"
+  },
+  "homepage": "https://magnifito.github.io/astro-google-preferred-source/",
+  "bugs": "https://github.com/magnifito/astro-google-preferred-source/issues",
+  "license": "Apache-2.0",
   "peerDependencies": {
     "astro": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0"
   },
   "devDependencies": {
+    "@types/node": "^26.3.0",
     "astro": "^7.0.0",
     "typescript": "^5.0.0"
   }

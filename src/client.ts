@@ -105,3 +105,8 @@ export async function addPreferredSource(options?: PreferredSourceOptions): Prom
   }
   api.addPreferredSource();
 }
+
+export function __reset(): void {
+  loadPromise = null;
+  initialized = false;
+}

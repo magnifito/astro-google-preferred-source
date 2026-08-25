@@ -1,8 +1,17 @@
 # @puralex/astro-google-preferred-source
 
+[![npm version](https://img.shields.io/npm/v/@puralex/astro-google-preferred-source)](https://www.npmjs.com/package/@puralex/astro-google-preferred-source)
+[![License](https://img.shields.io/github/license/magnifito/astro-google-preferred-source)](https://github.com/magnifito/astro-google-preferred-source/blob/main/LICENSE)
+
 Astro integration and components for the [Google Search preferred sources button](https://developers.google.com/search/docs/appearance/preferred-sources#standard-javascript).
 
 ## Installation
+
+```bash
+npx astro add @puralex/astro-google-preferred-source
+```
+
+or manually:
 
 ```bash
 npm install @puralex/astro-google-preferred-source

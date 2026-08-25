@@ -1,0 +1,84 @@
+---
+import { languages, getAssetPath } from '../data/languages';
+
+const assetLanguages = languages.filter((l) => l.hasAssets);
+---
+
+<div class="gallery">
+  {assetLanguages.map((lang) => (
+    <div class="asset-card">
+      <h3>{lang.name}</h3>
+      <div class="asset-preview light">
+        <img
+          src={getAssetPath(lang, 'light')}
+          alt={`${lang.name} light badge`}
+          loading="lazy"
+        />
+      </div>
+      <div class="asset-preview dark">
+        <img
+          src={getAssetPath(lang, 'dark')}
+          alt={`${lang.name} dark badge`}
+          loading="lazy"
+        />
+      </div>
+      <details>
+        <summary>Embed code</summary>
+        <pre><code>{`<GooglePreferredSourceDeeplink url="your-site.com">
+  <img src="${getAssetPath(lang, 'light')}" alt="Add as preferred source" />
+</GooglePreferredSourceDeeplink>`}</code></pre>
+      </details>
+    </div>
+  ))}
+</div>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .asset-card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  .asset-card h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+  }
+  .asset-preview {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+  }
+  .asset-preview.light {
+    background: #f8fafc;
+  }
+  .asset-preview.dark {
+    background: #0f172a;
+  }
+  .asset-preview img {
+    max-width: 100%;
+    height: auto;
+  }
+  .asset-card details {
+    margin-top: 0.75rem;
+  }
+  .asset-card summary {
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .asset-card pre {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+</style>
