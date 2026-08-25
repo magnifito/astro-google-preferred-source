@@ -1,0 +1,66 @@
+---
+interface Props {
+  code: string;
+  label?: string;
+}
+const { code, label = 'Copy' } = Astro.props;
+---
+
+<div class="copybox">
+  <pre><code>{code}</code></pre>
+  <button class="copy-btn" type="button">{label}</button>
+</div>
+
+<style>
+  .copybox {
+    position: relative;
+    margin: 0.5rem 0;
+  }
+  .copybox pre {
+    margin: 0;
+    padding-right: 5.5rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+  .copy-btn:hover {
+    filter: brightness(1.15);
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.copybox').forEach((box) => {
+    const btn = box.querySelector<HTMLButtonElement>('.copy-btn');
+    const code = box.querySelector('code');
+    if (!btn || !code) return;
+    const original = btn.textContent || 'Copy';
+    btn.addEventListener('click', async () => {
+      const text = code.textContent || '';
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      btn.textContent = 'Copied!';
+      setTimeout(() => {
+        btn.textContent = original;
+      }, 2000);
+    });
+  });
+</script>

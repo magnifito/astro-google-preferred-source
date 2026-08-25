@@ -5,37 +5,105 @@ import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-sourc
 import AdvancedDemo from '../components/AdvancedDemo.astro';
 import LanguagePlayground from '../components/LanguagePlayground.astro';
 import AssetsGallery from '../components/AssetsGallery.astro';
+import CopyBox from '../components/CopyBox.astro';
 import { languages } from '../data/languages';
+
+const installCmd = 'npx astro add @puralex/astro-google-preferred-source';
+
+const llmPrompt = `Set up Google preferred sources in this Astro project using the @puralex/astro-google-preferred-source integration:
+
+1. Run: npx astro add @puralex/astro-google-preferred-source
+2. Import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceButton.astro' in the main layout and render it in the header or footer so it appears on every page.
+3. The integration supports a standard mode (Google-rendered button, default) and an advanced mode (mode: 'advanced', custom trigger via the client API). Use standard unless I ask otherwise.
+4. Remind me to check site eligibility at https://www.google.com/preferences/source — only domain-level and subdomain-level sites qualify.
+
+Docs: https://magnifito.github.io/astro-google-preferred-source/`;
 ---
 
 <Layout>
-  <header>
-    <h1>@puralex/astro-google-preferred-source</h1>
+  <div class="hero">
+    <h1>Turn Google readers into loyal followers</h1>
     <p class="subtitle">
-      Astro plugin for the
-      <a href="https://developers.google.com/search/docs/appearance/preferred-sources">
-        Google Search preferred sources
-      </a>
-      button.
+      Google's preferred sources feature lets readers choose <em>your</em> site and see more of
+      your coverage in Top Stories. This Astro integration puts that button on your site in
+      minutes.
     </p>
-  </header>
+    <CopyBox code={installCmd} label="Copy" />
+    <div class="demo">
+      <GooglePreferredSourceButton theme="light" lang="en" />
+    </div>
+    <div class="badges">
+      <span>Astro 4, 5, 6 &amp; 7</span>
+      <span>&middot;</span>
+      <span>{languages.length} languages</span>
+      <span>&middot;</span>
+      <span>TypeScript + full test coverage</span>
+    </div>
+  </div>
+
+  <section>
+    <h2>Why preferred sources matter</h2>
+    <p>
+      When a reader marks you as a preferred source, Google shows them more of your content —
+      in Top Stories and in a dedicated "From your sources" section. You stop competing for
+      attention on every single query.
+    </p>
+    <div class="grid">
+      <div class="feature">
+        <span class="stat">2&times;</span>
+        <h3>More clicks</h3>
+        <p>
+          Google reports that readers click through to a site twice as much on average once they
+          pick it as a preferred source.
+        </p>
+      </div>
+      <div class="feature">
+        <span class="stat">&#9733;</span>
+        <h3>Top Stories visibility</h3>
+        <p>
+          Preferred sources get boosted placement in Top Stories and their own section on the
+          results page.
+        </p>
+      </div>
+      <div class="feature">
+        <span class="stat">&#9825;</span>
+        <h3>Durable loyalty</h3>
+        <p>
+          A reader's choice sticks. Every future search is a chance for your coverage to surface
+          first.
+        </p>
+      </div>
+      <div class="feature">
+        <span class="stat">1</span>
+        <h3>Component to add it</h3>
+        <p>
+          One Astro integration handles script injection, theming, and localization. No manual
+          script tags.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <section class="card">
-    <h2>Eligibility</h2>
-    <p>
-      Only domain-level and subdomain-level sites can be preferred sources.
-      Subdirectories like <code>example.com/blog</code> are not eligible.
-      Check your site in the
-      <a href="https://www.google.com/preferences/source">source preferences tool</a>
-      before implementing.
+    <h2>Install with one command</h2>
+    <CopyBox code={installCmd} />
+    <p>or manually:</p>
+    <CopyBox code="npm install @puralex/astro-google-preferred-source" />
+    <p class="note">
+      Works with Astro 4, 5, 6 and 7. Check eligibility first — only domain-level and
+      subdomain-level sites can be preferred sources. Subdirectories like
+      <code>example.com/blog</code> are not eligible. Check yours in the
+      <a href="https://www.google.com/preferences/source">source preferences tool</a>.
     </p>
   </section>
 
   <section class="card">
-    <h2>Installation</h2>
-    <pre><code>npx astro add @puralex/astro-google-preferred-source</code></pre>
-    <p>or manually:</p>
-    <pre><code>npm install @puralex/astro-google-preferred-source</code></pre>
+    <h2>Let your LLM do it</h2>
+    <p>
+      Using an AI coding assistant? Copy this prompt and paste it into your agent — it will
+      install the integration and wire up the button for you.
+    </p>
+    <CopyBox code={llmPrompt} label="Copy prompt" />
   </section>
 
   <section class="card">
@@ -53,9 +121,9 @@ export default defineConfig({
     <pre><code>{`---
 import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/components/GooglePreferredSourceButton.astro';
 ---
-<GooglePreferredSourceButton theme="dark" lang="en" />`}</code></pre>
+<GooglePreferredSourceButton theme="light" lang="en" />`}</code></pre>
     <div class="demo">
-      <GooglePreferredSourceButton theme="dark" lang="en" />
+      <GooglePreferredSourceButton theme="light" lang="en" />
     </div>
     <p class="note">
       Place the button where readers will see it: header, article end, or footer.
@@ -64,7 +132,7 @@ import GooglePreferredSourceButton from '@puralex/astro-google-preferred-source/
   </section>
 
   <section class="card">
-    <h2>Language & theme playground</h2>
+    <h2>Language &amp; theme playground</h2>
     <p>
       Google supports {languages.length} languages. Pick one to see how the standard button
       localizes.
@@ -115,6 +183,7 @@ import GooglePreferredSourceDeeplink from '@puralex/astro-google-preferred-sourc
     <ul>
       <li><a href="https://www.google.com/preferences/source">Source preferences tool</a> — check site eligibility</li>
       <li><a href="https://developers.google.com/search/docs/appearance/preferred-sources">Google preferred sources docs</a></li>
+      <li><a href="https://blog.google/products/search/preferred-sources/">Google announcement: preferred sources</a></li>
       <li><a href="https://developers.google.com/static/search/docs/appearance/preferred-sources-languages.csv">Supported language codes</a></li>
       <li><a href="https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip">Official button assets</a></li>
       <li><a href="https://reader-revenue-demo.ue.r.appspot.com/preferred-sources/esm">Google interactive demo</a></li>

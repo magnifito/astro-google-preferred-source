@@ -14,13 +14,30 @@ const { title = '@puralex/astro-google-preferred-source' } = Astro.props;
     <title>{title}</title>
     <style is:global>
       :root {
-        --bg: #0f172a;
-        --fg: #f8fafc;
-        --muted: #94a3b8;
-        --accent: #3b82f6;
-        --card: #1e293b;
+        --bg: #ffffff;
+        --fg: #202124;
+        --muted: #5f6368;
+        --accent: #1a73e8;
+        --card: #f8f9fa;
+        --border: #dadce0;
+        --google-blue: #4285f4;
+        --google-red: #ea4335;
+        --google-yellow: #f9ab00;
+        --google-green: #34a853;
       }
       * { box-sizing: border-box; }
+      body::before {
+        content: '';
+        display: block;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--google-blue) 0 25%,
+          var(--google-red) 25% 50%,
+          var(--google-yellow) 50% 75%,
+          var(--google-green) 75% 100%
+        );
+      }
       body {
         margin: 0;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -30,25 +47,97 @@ const { title = '@puralex/astro-google-preferred-source' } = Astro.props;
       }
       a { color: var(--accent); }
       .container {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
         padding: 2rem 1.5rem;
       }
+      .hero {
+        text-align: center;
+        padding: 4rem 1rem 3rem;
+        margin: -2rem -1.5rem 3rem;
+        background: linear-gradient(160deg, #e8f0fe 0%, #ffffff 75%);
+        border-bottom: 1px solid var(--border);
+      }
+      .hero h1 {
+        font-size: 3rem;
+        line-height: 1.15;
+        margin: 0 0 1rem;
+      }
+      .hero .subtitle {
+        font-size: 1.35rem;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+      }
+      .hero .copybox {
+        max-width: 640px;
+        margin: 0 auto;
+        text-align: left;
+      }
+      .hero .demo {
+        border: none;
+        margin-top: 1.5rem;
+        padding: 0.5rem;
+      }
+      .badges {
+        margin-top: 1.5rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+      .feature {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.25rem;
+      }
+      .feature:nth-child(1) { border-top: 3px solid var(--google-blue); }
+      .feature:nth-child(2) { border-top: 3px solid var(--google-red); }
+      .feature:nth-child(3) { border-top: 3px solid var(--google-yellow); }
+      .feature:nth-child(4) { border-top: 3px solid var(--google-green); }
+      .feature h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.05rem;
+      }
+      .feature p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .feature .stat {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+      .feature:nth-child(1) .stat { color: var(--google-blue); }
+      .feature:nth-child(2) .stat { color: var(--google-red); }
+      .feature:nth-child(3) .stat { color: var(--google-yellow); }
+      .feature:nth-child(4) .stat { color: var(--google-green); }
       header {
-        border-bottom: 1px solid var(--card);
+        border-bottom: 1px solid var(--border);
         margin-bottom: 3rem;
       }
       h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
       .subtitle { color: var(--muted); font-size: 1.25rem; }
       .card {
         background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 12px;
         padding: 1.5rem;
         margin: 2rem 0;
       }
       .card h2 { margin-top: 0; }
       pre {
-        background: #020617;
+        background: #f1f3f4;
+        border: 1px solid var(--border);
         padding: 1rem;
         border-radius: 8px;
         overflow-x: auto;
@@ -80,7 +169,7 @@ const { title = '@puralex/astro-google-preferred-source' } = Astro.props;
       footer {
         margin-top: 4rem;
         padding-top: 2rem;
-        border-top: 1px solid var(--card);
+        border-top: 1px solid var(--border);
         color: var(--muted);
       }
     </style>
