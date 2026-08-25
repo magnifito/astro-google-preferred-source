@@ -64,8 +64,16 @@ const exampleSite = 'magnifito.github.io';
         </div>
       </div>
 
-      <div class="placement-code">
-        <pre><code>{`<article class="story">
+      <details class="code-reveal">
+        <summary class="code-reveal-summary">
+          <span class="summary-left">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>View code snippet</span>
+          </span>
+          <span class="summary-chevron">▼</span>
+        </summary>
+        <div class="snippet-wrapper">
+          <pre><code>{`<article class="story">
   <h1>Your Article Title</h1>
   <p>Article content...</p>
   
@@ -79,7 +87,9 @@ const exampleSite = 'magnifito.github.io';
     />
   </aside>
 </article>`}</code></pre>
-      </div>
+          <button type="button" class="copy-snippet-btn" aria-label="Copy snippet">Copy</button>
+        </div>
+      </details>
     </div>
 
     <!-- 2. Header Navbar (Maximum Visibility) -->
@@ -133,8 +143,16 @@ const exampleSite = 'magnifito.github.io';
         </div>
       </div>
 
-      <div class="placement-code">
-        <pre><code>{`<header class="site-header">
+      <details class="code-reveal">
+        <summary class="code-reveal-summary">
+          <span class="summary-left">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>View code snippet</span>
+          </span>
+          <span class="summary-chevron">▼</span>
+        </summary>
+        <div class="snippet-wrapper">
+          <pre><code>{`<header class="site-header">
   <Logo />
   <nav class="nav-links">
     <a href="/news">News</a>
@@ -146,7 +164,9 @@ const exampleSite = 'magnifito.github.io';
     />
   </nav>
 </header>`}</code></pre>
-      </div>
+          <button type="button" class="copy-snippet-btn" aria-label="Copy snippet">Copy</button>
+        </div>
+      </details>
     </div>
 
     <!-- 3. Floating Reader Toast (High Engagement) -->
@@ -198,8 +218,16 @@ const exampleSite = 'magnifito.github.io';
         </div>
       </div>
 
-      <div class="placement-code">
-        <pre><code>{`<!-- Sticky bottom dock or scroll-triggered toast -->
+      <details class="code-reveal">
+        <summary class="code-reveal-summary">
+          <span class="summary-left">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>View code snippet</span>
+          </span>
+          <span class="summary-chevron">▼</span>
+        </summary>
+        <div class="snippet-wrapper">
+          <pre><code>{`<!-- Sticky bottom dock or scroll-triggered toast -->
 <div class="floating-reader-dock">
   <span class="indicator">🟢</span>
   <span>Enjoying this story?</span>
@@ -210,7 +238,9 @@ const exampleSite = 'magnifito.github.io';
     label="Add to Google"
   />
 </div>`}</code></pre>
-      </div>
+          <button type="button" class="copy-snippet-btn" aria-label="Copy snippet">Copy</button>
+        </div>
+      </details>
     </div>
 
     <!-- 4. Author Bio & Editorial Byline (Personal Trust) -->
@@ -263,8 +293,16 @@ const exampleSite = 'magnifito.github.io';
         </div>
       </div>
 
-      <div class="placement-code">
-        <pre><code>{`<div class="author-card">
+      <details class="code-reveal">
+        <summary class="code-reveal-summary">
+          <span class="summary-left">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>View code snippet</span>
+          </span>
+          <span class="summary-chevron">▼</span>
+        </summary>
+        <div class="snippet-wrapper">
+          <pre><code>{`<div class="author-card">
   <img src={author.avatar} alt={author.name} />
   <div>
     <h4>{author.name}</h4>
@@ -277,7 +315,9 @@ const exampleSite = 'magnifito.github.io';
     label="Follow Publication"
   />
 </div>`}</code></pre>
-      </div>
+          <button type="button" class="copy-snippet-btn" aria-label="Copy snippet">Copy</button>
+        </div>
+      </details>
     </div>
 
     <!-- 5. Email Newsletters & Social Bios (Off-Site Reach) -->
@@ -323,7 +363,7 @@ const exampleSite = 'magnifito.github.io';
                 url={exampleSite}
                 variant="button"
                 size="sm"
-                label="Add as a Preferred Source &rarr;"
+                label="Add as a Preferred Source →"
                 theme="light"
               />
             </div>
@@ -331,17 +371,27 @@ const exampleSite = 'magnifito.github.io';
         </div>
       </div>
 
-      <div class="placement-code">
-        <pre><code>{`<!-- Inside email templates or Linktree/social bio -->
+      <details class="code-reveal">
+        <summary class="code-reveal-summary">
+          <span class="summary-left">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>View code snippet</span>
+          </span>
+          <span class="summary-chevron">▼</span>
+        </summary>
+        <div class="snippet-wrapper">
+          <pre><code>{`<!-- Inside email templates or Linktree/social bio -->
 <div class="email-footer">
   <p>Read our stories first in Google Search:</p>
   <GooglePreferredSourceDeeplink
     url="your-site.com"
     variant="button"
-    label="Add us as a Preferred Source &rarr;"
+    label="Add us as a Preferred Source →"
   />
 </div>`}</code></pre>
-      </div>
+          <button type="button" class="copy-snippet-btn" aria-label="Copy snippet">Copy</button>
+        </div>
+      </details>
     </div>
   </div>
 
@@ -357,6 +407,37 @@ const exampleSite = 'magnifito.github.io';
     </div>
   </div>
 </div>
+
+<script>
+  // Copy button handler for placement snippets
+  document.querySelectorAll('.snippet-wrapper').forEach((box) => {
+    const btn = box.querySelector<HTMLButtonElement>('.copy-snippet-btn');
+    const code = box.querySelector('code');
+    if (!btn || !code) return;
+    const originalText = btn.textContent || 'Copy';
+
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const text = code.textContent || '';
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+</script>
 
 <style>
   .placement-guide {
@@ -826,7 +907,7 @@ const exampleSite = 'magnifito.github.io';
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.4rem;
     text-align: center;
   }
 
@@ -837,13 +918,88 @@ const exampleSite = 'magnifito.github.io';
     color: var(--text);
   }
 
-  .placement-code pre {
-    margin: 0;
-    padding: 0.85rem;
-    background: rgba(0, 0, 0, 0.4);
+  /* COLLAPSIBLE CODE REVEAL */
+  .code-reveal {
+    border-top: 1px solid var(--border);
+    padding-top: 0.5rem;
+    margin-top: -0.25rem;
+  }
+
+  .code-reveal-summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.2rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    user-select: none;
+    transition: color 0.2s ease;
+  }
+
+  .code-reveal-summary:hover {
+    color: var(--text);
+  }
+
+  .summary-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .summary-chevron {
+    font-size: 0.65rem;
+    transition: transform 0.2s ease;
+    color: var(--muted);
+  }
+
+  .code-reveal[open] .summary-chevron {
+    transform: rotate(180deg);
+  }
+
+  .snippet-wrapper {
+    position: relative;
+    margin-top: 0.6rem;
     border-radius: 8px;
-    font-size: 0.75rem;
-    overflow-x: auto;
+    overflow: hidden;
+  }
+
+  .snippet-wrapper pre {
+    margin: 0;
+    padding: 0.85rem 4.5rem 0.85rem 0.85rem;
+    background: rgba(0, 0, 0, 0.45);
+    font-size: 0.74rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-radius: 8px;
+  }
+
+  .copy-snippet-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e8eaed;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+
+  .copy-snippet-btn:hover {
+    background: #ffffff;
+    color: #0b0f19;
+    border-color: #ffffff;
+  }
+
+  .copy-snippet-btn.copied {
+    background: #34a853;
+    color: #ffffff;
+    border-color: #34a853;
   }
 
   /* Tips Banner */
